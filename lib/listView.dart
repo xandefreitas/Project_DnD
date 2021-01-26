@@ -29,7 +29,14 @@ class _BuildListViewState extends State<BuildListView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Lista de Classes"),
+        title: ListTile(
+          title: Text(
+            "Lista de Classes",
+            style: TextStyle(fontSize: 20, color: Colors.white),
+          ),
+          subtitle: Text('$baseUrl/api/classes'),
+          trailing: Icon(Icons.shield),
+        ),
       ),
       body: classesList(),
     );

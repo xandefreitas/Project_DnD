@@ -2,16 +2,19 @@ import 'package:temis_front/model/details.dart';
 
 class ResponseA {
   int count;
-  List<Details> results;
+  List<Proficiencies> results;
 
-  ResponseA({this.count, this.results});
+  ResponseA({
+    this.count,
+    this.results,
+  });
 
   ResponseA.fromJson(Map<String, dynamic> json) {
     count = json['count'];
     if (json['results'] != null) {
-      results = <Details>[];
+      results = <Proficiencies>[];
       json['results'].forEach((v) {
-        results.add(new Details.fromJson(v));
+        results.add(new Proficiencies.fromJson(v));
       });
     }
   }
