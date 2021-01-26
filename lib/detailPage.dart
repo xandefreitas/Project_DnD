@@ -161,6 +161,10 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
             subtitle: proficiencyList(),
+            trailing: Text(
+              '(Choose: ${detailsData.proficiencyChoices[0].choose})',
+              style: TextStyle(color: Colors.redAccent),
+            ),
           );
         } else if (i == 4) {
           return ListTile(
