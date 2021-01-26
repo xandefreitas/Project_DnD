@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'listView.dart';
+import 'pages/listView.dart';
 
 class MyApp extends StatelessWidget {
   @override
