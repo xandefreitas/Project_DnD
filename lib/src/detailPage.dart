@@ -3,9 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
 import 'package:temis_front/model/details.dart';
+import 'package:temis_front/model/response.dart';
 
 import 'listView.dart';
-import 'model/response.dart';
 
 // import 'package:dio/dio.dart';
 // import 'package:temis_front/common/dio_singleton.dart';
