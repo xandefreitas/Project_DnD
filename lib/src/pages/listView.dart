@@ -61,7 +61,7 @@ class _BuildListViewState extends State<BuildListView> {
         decoration: BoxDecoration(
           color: Colors.white,
         ),
-        margin: const EdgeInsets.all(5),
+        margin: const EdgeInsets.all(3),
         child: Column(
           children: <Widget>[
             showClasses(item),
@@ -71,7 +71,13 @@ class _BuildListViewState extends State<BuildListView> {
 
   showClasses(dynamic item) {
     return ListTile(
-      leading: Icon(Icons.accessibility),
+      leading: CircleAvatar(
+        child: Image.asset(
+          'assets/images/perfil.png',
+          height: 40,
+          color: Colors.black,
+        ),
+      ), //Icon(Icons.accessibility),
       title: Text(
         '${item['name']}',
         style: TextStyle(fontSize: 20.0, color: Colors.black),

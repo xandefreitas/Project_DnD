@@ -136,11 +136,21 @@ class _DetailPageState extends State<DetailPage> {
         } else if (i == 9) {
           text = 'spellcasting';
           index.add(text);
-          info.add(detailsData.spellcasting);
+          if (detailsData.spellcasting != null) {
+            info.add(detailsData.spellcasting);
+          } else {
+            info.add('This class does not have spells');
+          }
         } else if (i == 10) {
           text = 'spells';
           index.add(text);
-          info.add(detailsData.spells);
+          if (detailsData.spells != null) {
+            info.add(detailsData.spells);
+          } else {
+            info.add(
+              'This class does not have spells',
+            );
+          }
         } else if (i == 11) {
           text = 'url';
           index.add(text);
@@ -163,7 +173,7 @@ class _DetailPageState extends State<DetailPage> {
             subtitle: proficiencyList(),
             trailing: Text(
               '(Choose: ${detailsData.proficiencyChoices[0].choose})',
-              style: TextStyle(color: Colors.redAccent),
+              style: TextStyle(fontSize: 12, color: Colors.redAccent),
             ),
           );
         } else if (i == 4) {
@@ -176,6 +186,9 @@ class _DetailPageState extends State<DetailPage> {
               ),
             ),
             subtitle: classProficiencyList(),
+            trailing: SizedBox(
+              width: 50,
+            ),
           );
         } else {
           return ListTile(
