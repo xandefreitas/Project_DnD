@@ -51,6 +51,19 @@ flutter:
   # To add assets to your application, add an assets section, like this:
   assets:
     - assets/images/perfil.png
+    - assets/images/sword.png
+    - assets/images/Barbarian.png
+    - assets/images/Bard.png
+    - assets/images/Cleric.png
+    - assets/images/Druid.png
+    - assets/images/Fighter.png
+    - assets/images/Monk.png
+    - assets/images/Paladin.png
+    - assets/images/Ranger.png
+    - assets/images/Rogue.png
+    - assets/images/Sorcerer.png
+    - assets/images/Warlock.png
+    - assets/images/Wizard.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

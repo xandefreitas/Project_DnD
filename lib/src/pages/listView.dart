@@ -35,7 +35,10 @@ class _BuildListViewState extends State<BuildListView> {
             style: TextStyle(fontSize: 20, color: Colors.white),
           ),
           subtitle: Text('$baseUrl/api/classes'),
-          trailing: Icon(Icons.shield),
+          trailing: Image.asset(
+            'assets/images/sword.png',
+            height: 40,
+          ),
         ),
       ),
       body: classesList(),
@@ -73,9 +76,8 @@ class _BuildListViewState extends State<BuildListView> {
     return ListTile(
       leading: CircleAvatar(
         child: Image.asset(
-          'assets/images/perfil.png',
+          'assets/images/${item['name']}.png',
           height: 40,
-          color: Colors.black,
         ),
       ), //Icon(Icons.accessibility),
       title: Text(
