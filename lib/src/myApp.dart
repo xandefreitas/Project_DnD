@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/listView.dart';
+import 'pages/classesList.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BuildListView(),
+      home: ClassesList(),
     );
   }
 }
