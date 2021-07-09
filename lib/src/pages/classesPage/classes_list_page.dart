@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:line_icons/line_icons.dart';
 import 'package:temis_front/common/bloc/classes/classes_bloc.dart';
 import 'package:temis_front/common/bloc/classes/classes_event.dart';
 import 'package:temis_front/common/bloc/classes/classes_state.dart';
 import 'package:temis_front/model/classes.dart';
-import 'detailPage.dart';
+import '../detailsPage/details_page.dart';
 
-class ClassesList extends StatefulWidget {
+class ClassesListPage extends StatefulWidget {
   @override
-  _ClassesListState createState() => _ClassesListState();
+  _ClassesListPageState createState() => _ClassesListPageState();
 }
 
-class _ClassesListState extends State<ClassesList> {
+class _ClassesListPageState extends State<ClassesListPage> {
   ClassesBloc classesBloc;
 
   @override
@@ -25,22 +26,9 @@ class _ClassesListState extends State<ClassesList> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset(
-            'assets/images/sword.png',
-          ),
-        ),
-        title: ListTile(
-          title: Text(
-            "Lista de Classes",
-            textAlign: TextAlign.start,
-            style: TextStyle(fontSize: 20, color: Colors.white),
-          ),
-          subtitle: Text(
-            'https://www.dnd5eapi.co/api/classes',
-            textAlign: TextAlign.start,
-          ),
+        title: Text(
+          "Classes",
+          style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
       body: classesList(),
@@ -63,6 +51,7 @@ class _ClassesListState extends State<ClassesList> {
             itemBuilder: (context, i) {
               return ListTile(
                 leading: CircleAvatar(
+                  backgroundColor: Colors.transparent,
                   child: Image.asset(
                     'assets/images/${classes[i].name}.png',
                     height: 40,
@@ -73,14 +62,14 @@ class _ClassesListState extends State<ClassesList> {
                   style: TextStyle(fontSize: 20.0, color: Colors.black),
                 ),
                 trailing: Icon(
-                  Icons.arrow_forward_ios,
+                  LineIcons.angleRight,
                   size: 20,
                 ),
                 onTap: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DetailPage(classes: classes[i]),
+                      builder: (context) => DetailsPage(classes: classes[i]),
                     ),
                   );
                 },

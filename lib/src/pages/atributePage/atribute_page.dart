@@ -5,7 +5,7 @@ import 'package:http/http.dart';
 import 'package:http/http.dart' as http;
 import 'package:temis_front/model/atributes.dart';
 
-import '../classesList.dart';
+import '../classesPage/classes_list_page.dart';
 
 class AtributePage extends StatefulWidget {
   final dynamic atribute;

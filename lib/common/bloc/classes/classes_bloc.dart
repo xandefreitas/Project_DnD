@@ -19,7 +19,7 @@ class ClassesBloc extends Bloc<ClassesEvent, ClassesState> {
     try {
       if (event is ClassesFetchEvent) {
         yield ClassesFetchingState();
-        classes = await ClassesWebClient().getClassesList();
+        classes = await ClassesWebClient().getClassesListPage();
         yield ClassesFetchedState(classes: classes);
       }
       if (event is ClassInfoFetchEvent) {

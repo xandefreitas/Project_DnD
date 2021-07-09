@@ -32,6 +32,8 @@ dependencies:
   dio: ^3.0.10
   flutter_bloc: ^7.0.0
   equatable: ^2.0.0
+  line_icons: ^2.0.1
+  unicons: ^2.0.1
 
 dev_dependencies:
   flutter_test:

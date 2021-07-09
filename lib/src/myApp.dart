@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'pages/classesList.dart';
+import 'package:temis_front/src/pages/loginPage/login_page.dart';
 
 class MyApp extends StatelessWidget {
   @override
@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: ClassesList(),
+      home: LoginPage(),
     );
   }
 }

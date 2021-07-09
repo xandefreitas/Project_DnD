@@ -12,7 +12,7 @@ class ClassesWebClient {
     ..options.baseUrl = "${Consts.BaseUrl}"
     ..options.connectTimeout = 10000;
 
-  Future<Classes> getClassesList() async {
+  Future<Classes> getClassesListPage() async {
     final response = await _dio.get('$classesApiPath');
     validateResponse(response);
     return Classes.fromJson(response.data);
