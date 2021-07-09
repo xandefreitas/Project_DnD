@@ -7,6 +7,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xffcccbcb),
       body: Stack(
         children: [
           Positioned(
@@ -22,7 +23,7 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Colors.blue,
+                      color: Colors.purple[900],
                     ),
                   ),
                 ],
@@ -33,8 +34,7 @@ class LoginPage extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.all(8.0),
               child: Image.asset(
-                'assets/images/sword.png',
-                scale: 5,
+                'assets/images/login_icon.png',
               ),
             ),
           ),
@@ -60,6 +60,7 @@ class LoginPage extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                            primary: Colors.purple[900],
                             elevation: 0,
                             shadowColor: Colors.transparent,
                           ),
@@ -76,6 +77,7 @@ class LoginPage extends StatelessWidget {
                         ),
                         ElevatedButton(
                           style: ElevatedButton.styleFrom(
+                            primary: Colors.purple[900],
                             elevation: 0,
                             shadowColor: Colors.transparent,
                           ),

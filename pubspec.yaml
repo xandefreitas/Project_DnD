@@ -68,6 +68,11 @@ flutter:
     - assets/images/Sorcerer.png
     - assets/images/Warlock.png
     - assets/images/Wizard.png
+    - assets/images/spell_book_image.png
+    - assets/images/encyclopedia.png
+    - assets/images/quest_chest.png
+    - assets/images/characters.png
+    - assets/images/login_icon.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -39,6 +39,28 @@ class HomePage extends StatelessWidget {
                       ),
                       width: MediaQuery.of(context).size.width,
                       height: 100,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Text('User Level'),
+                          Text(
+                            '54',
+                            style: TextStyle(
+                              fontSize: 24,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          Container(
+                            padding: EdgeInsets.symmetric(horizontal: 20),
+                            child: LinearProgressIndicator(
+                              backgroundColor: Colors.green[200],
+                              color: Colors.green,
+                              minHeight: 24,
+                              value: 0.4,
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Container(
@@ -55,7 +77,8 @@ class HomePage extends StatelessWidget {
                       children: [
                         GridItem(
                           itemImage: Image.asset(
-                            'assets/images/sword.png',
+                            'assets/images/characters.png',
+                            scale: 6,
                           ),
                           itemLabel: 'Characters',
                         ),
@@ -68,20 +91,23 @@ class HomePage extends StatelessWidget {
                           ),
                           child: GridItem(
                             itemImage: Image.asset(
-                              'assets/images/sword.png',
+                              'assets/images/encyclopedia.png',
+                              scale: 3,
                             ),
                             itemLabel: 'Encyclopedia',
                           ),
                         ),
                         GridItem(
                           itemImage: Image.asset(
-                            'assets/images/spells_book_image.png',
+                            'assets/images/spell_book_image.png',
+                            scale: 2.5,
                           ),
                           itemLabel: 'Spells',
                         ),
                         GridItem(
                           itemImage: Image.asset(
-                            'assets/images/sword.png',
+                            'assets/images/quest_chest.png',
+                            scale: 4.5,
                           ),
                           itemLabel: 'Quests',
                         ),

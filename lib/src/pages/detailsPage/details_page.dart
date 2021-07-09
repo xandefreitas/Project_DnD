@@ -46,6 +46,7 @@ class _DetailsPageState extends State<DetailsPage> {
               child: Scaffold(
                 appBar: PreferredSize(
                   child: AppBar(
+                    backgroundColor: Colors.purple[900],
                     leading: IconButton(
                       iconSize: 18,
                       icon: Icon(
@@ -68,8 +69,9 @@ class _DetailsPageState extends State<DetailsPage> {
                       centerTitle: true,
                     ),
                     bottom: TabBar(
-                      unselectedLabelColor: Colors.blue[800],
-                      labelColor: Colors.white,
+                      indicatorColor: Colors.deepPurple[300],
+                      unselectedLabelColor: Colors.white,
+                      labelColor: Colors.deepPurple[300],
                       labelStyle: TextStyle(fontWeight: FontWeight.bold),
                       tabs: [
                         Tab(
@@ -111,7 +113,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 border: Border.all(
-                                  color: Colors.blue,
+                                  color: Colors.purple[900],
                                   width: 2,
                                 ),
                               ),
@@ -146,7 +148,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
-                                    color: Colors.blue,
+                                    color: Colors.purple[900],
                                     width: 2,
                                   ),
                                 ),
@@ -197,7 +199,7 @@ class _DetailsPageState extends State<DetailsPage> {
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(5),
                                 border: Border.all(
-                                  color: Colors.blue,
+                                  color: Colors.purple[900],
                                   width: 2,
                                 ),
                               ),
@@ -244,7 +246,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                 decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(5),
                                   border: Border.all(
-                                    color: Colors.blue,
+                                    color: Colors.purple[900],
                                     width: 2,
                                   ),
                                 ),
@@ -276,7 +278,7 @@ class _DetailsPageState extends State<DetailsPage> {
                                               detailsData.name == 'Rogue'
                                           ? [
                                               Text(
-                                                  'Essa classe não possui magias')
+                                                  'This class does not have magic')
                                             ]
                                           : detailsData.spellcasting.info
                                               .map((e) => ListTile(

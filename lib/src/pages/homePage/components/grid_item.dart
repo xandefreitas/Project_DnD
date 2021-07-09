@@ -12,22 +12,21 @@ class GridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
-      height: 100,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(15),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          Container(
-            child: itemImage,
-            width: 100,
-            height: 100,
-          ),
-          Text(itemLabel),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Container(
+              child: itemImage,
+            ),
+            Text(itemLabel),
+          ],
+        ),
       ),
     );
   }
