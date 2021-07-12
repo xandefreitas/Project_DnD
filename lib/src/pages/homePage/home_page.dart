@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:temis_front/src/pages/classesPage/classes_list_page.dart';
+import 'package:temis_front/src/pages/encyclopediaPage/encyclopedia_page.dart';
 
 import 'components/grid_item.dart';
 
@@ -15,7 +16,7 @@ class HomePage extends StatelessWidget {
             height: MediaQuery.of(context).size.height,
             color: Color(0xFFcccbcb),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
               child: Column(
                 children: [
                   Padding(
@@ -84,7 +85,7 @@ class HomePage extends StatelessWidget {
                           itemLabel: 'Characters',
                         ),
                         GridItem(
-                          navigatorPage: ClassesListPage(),
+                          navigatorPage: EncyclopediaPage(),
                           itemImage: Image.asset(
                             'assets/images/encyclopedia.png',
                             scale: 3,
