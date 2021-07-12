@@ -24,7 +24,7 @@ class HomePage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       height: 200,
                       decoration: BoxDecoration(
-                        color: Colors.purple[900],
+                        color: Color(0xff4d3e7d),
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Container(),
@@ -76,28 +76,23 @@ class HomePage extends StatelessWidget {
                       ),
                       children: [
                         GridItem(
+                          navigatorPage: Scaffold(),
                           itemImage: Image.asset(
                             'assets/images/characters.png',
                             scale: 6,
                           ),
                           itemLabel: 'Characters',
                         ),
-                        InkWell(
-                          onTap: () => Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => ClassesListPage(),
-                            ),
+                        GridItem(
+                          navigatorPage: ClassesListPage(),
+                          itemImage: Image.asset(
+                            'assets/images/encyclopedia.png',
+                            scale: 3,
                           ),
-                          child: GridItem(
-                            itemImage: Image.asset(
-                              'assets/images/encyclopedia.png',
-                              scale: 3,
-                            ),
-                            itemLabel: 'Encyclopedia',
-                          ),
+                          itemLabel: 'Encyclopedia',
                         ),
                         GridItem(
+                          navigatorPage: Scaffold(),
                           itemImage: Image.asset(
                             'assets/images/spell_book_image.png',
                             scale: 2.5,
@@ -105,6 +100,7 @@ class HomePage extends StatelessWidget {
                           itemLabel: 'Spells',
                         ),
                         GridItem(
+                          navigatorPage: Scaffold(),
                           itemImage: Image.asset(
                             'assets/images/quest_chest.png',
                             scale: 4.5,

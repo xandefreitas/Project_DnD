@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:temis_front/src/pages/homePage/home_page.dart';
 
+import 'components/login_page_text_field.dart';
+
 class LoginPage extends StatelessWidget {
   const LoginPage({Key key}) : super(key: key);
 
@@ -23,7 +25,7 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Colors.purple[900],
+                      color: Color(0xff4d3e7d),
                     ),
                   ),
                 ],
@@ -39,66 +41,70 @@ class LoginPage extends StatelessWidget {
             ),
           ),
           Positioned(
-              bottom: 60,
-              right: 0,
-              left: 0,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 40),
-                child: Column(
-                  children: [
-                    TextField(
-                      decoration: InputDecoration(hintText: 'Usuário'),
-                    ),
-                    TextField(
-                      decoration: InputDecoration(hintText: 'Senha'),
-                    ),
-                    SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.purple[900],
-                            elevation: 0,
-                            shadowColor: Colors.transparent,
-                          ),
-                          onPressed: () {},
-                          child: Text(
-                            'Registrar-se',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
+            bottom: 60,
+            right: 0,
+            left: 0,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 40),
+              child: Column(
+                children: [
+                  LoginPageTextField(
+                    isPassword: false,
+                    hintText: 'User',
+                  ),
+                  SizedBox(height: 4),
+                  LoginPageTextField(
+                    isPassword: true,
+                    hintText: 'Password',
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xff4d3e7d),
+                          elevation: 0,
+                          shadowColor: Colors.transparent,
+                        ),
+                        onPressed: () {},
+                        child: Text(
+                          'Registrar-se',
+                          style: TextStyle(
+                            color: Colors.white,
                           ),
                         ),
-                        SizedBox(
-                          width: 8,
+                      ),
+                      SizedBox(
+                        width: 8,
+                      ),
+                      ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Color(0xff4d3e7d),
+                          elevation: 0,
+                          shadowColor: Colors.transparent,
                         ),
-                        ElevatedButton(
-                          style: ElevatedButton.styleFrom(
-                            primary: Colors.purple[900],
-                            elevation: 0,
-                            shadowColor: Colors.transparent,
-                          ),
-                          onPressed: () => Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => HomePage(),
-                            ),
-                          ),
-                          child: Text(
-                            'Entrar',
-                            style: TextStyle(
-                              color: Colors.white,
-                            ),
+                        onPressed: () => Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => HomePage(),
                           ),
                         ),
-                      ],
-                    )
-                  ],
-                ),
-              ))
+                        child: Text(
+                          'Entrar',
+                          style: TextStyle(
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                ],
+              ),
+            ),
+          )
         ],
       ),
     );

@@ -25,7 +25,7 @@ class _ClassesListPageState extends State<ClassesListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.purple[900],
+        backgroundColor: Color(0xff4d3e7d),
         centerTitle: true,
         title: Text(
           "Classes",
