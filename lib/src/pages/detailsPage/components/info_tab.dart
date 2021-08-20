@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:temis_front/model/details.dart';
+import 'package:project_dd/model/details.dart';
 
 infoTab(BuildContext context, Details detailsData) {
   return SingleChildScrollView(
@@ -31,9 +31,7 @@ infoTab(BuildContext context, Details detailsData) {
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: detailsData.proficiencies
-                        .map((e) => Text(' - ${e.name}'))
-                        .toList(),
+                    children: detailsData.proficiencies.map((e) => Text(' - ${e.name}')).toList(),
                   ),
                 ],
               ),
@@ -68,9 +66,7 @@ infoTab(BuildContext context, Details detailsData) {
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: detailsData.subclasses
-                              .map((e) => Text(' - ${e.name}'))
-                              .toList(),
+                          children: detailsData.subclasses.map((e) => Text(' - ${e.name}')).toList(),
                         ),
                       ],
                     ),

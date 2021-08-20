@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:temis_front/common/bloc/classes/classes_bloc.dart';
-import 'package:temis_front/common/bloc/classes/classes_event.dart';
-import 'package:temis_front/common/bloc/classes/classes_state.dart';
-import 'package:temis_front/model/classes.dart';
+import 'package:project_dd/common/bloc/classes/classes_bloc.dart';
+import 'package:project_dd/common/bloc/classes/classes_event.dart';
+import 'package:project_dd/common/bloc/classes/classes_state.dart';
+import 'package:project_dd/model/classes.dart';
 import '../detailsPage/details_page.dart';
 
 class ClassesListPage extends StatefulWidget {

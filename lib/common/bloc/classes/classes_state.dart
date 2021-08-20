@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
-import 'package:temis_front/model/classes.dart';
-import 'package:temis_front/model/details.dart';
+import 'package:project_dd/model/classes.dart';
+import 'package:project_dd/model/details.dart';
 
 abstract class ClassesState extends Equatable {
   const ClassesState();

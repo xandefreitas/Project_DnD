@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:temis_front/src/pages/loginPage/login_page.dart';
+import 'package:project_dd/src/pages/loginPage/login_page.dart';
 
 class MyApp extends StatelessWidget {
   @override

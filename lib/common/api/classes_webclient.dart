@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
-import 'package:temis_front/common/network/validate_response.dart';
-import 'package:temis_front/model/classes.dart';
-import 'package:temis_front/model/details.dart';
+import 'package:project_dd/common/network/validate_response.dart';
+import 'package:project_dd/model/classes.dart';
+import 'package:project_dd/model/details.dart';
 
 import '../consts.dart';
 
@@ -19,8 +19,7 @@ class ClassesWebClient {
   }
 
   Future<Details> getClassInfo(String classInfoName) async {
-    final response =
-        await _dio.get('$classesApiPath/${classInfoName.toLowerCase()}');
+    final response = await _dio.get('$classesApiPath/${classInfoName.toLowerCase()}');
     validateResponse(response);
     return Details.fromJson(response.data);
   }

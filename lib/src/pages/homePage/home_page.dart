@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:temis_front/src/pages/classesPage/classes_list_page.dart';
-import 'package:temis_front/src/pages/encyclopediaPage/encyclopedia_page.dart';
+import 'package:project_dd/src/pages/classesPage/classes_list_page.dart';
+import 'package:project_dd/src/pages/encyclopediaPage/encyclopedia_page.dart';
 
 import 'components/grid_item.dart';
 

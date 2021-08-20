@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.temis_front">
+    package="com.example.project_dd">
    <application
-        android:label="temis_front"
+        android:label="project_dd"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

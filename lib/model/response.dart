@@ -1,4 +1,4 @@
-import 'package:temis_front/model/details.dart';
+import 'package:project_dd/model/details.dart';
 
 class ResponseA {
   int count;

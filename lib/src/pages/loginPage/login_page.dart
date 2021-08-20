@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:temis_front/src/pages/homePage/home_page.dart';
+import 'package:project_dd/src/pages/homePage/home_page.dart';
 
 import 'components/login_page_text_field.dart';
 

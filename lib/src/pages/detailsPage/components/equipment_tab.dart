@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:temis_front/model/details.dart';
+import 'package:project_dd/model/details.dart';
 
 equipmentTab(BuildContext context, Details detailsData) {
   return SingleChildScrollView(
@@ -32,10 +32,7 @@ equipmentTab(BuildContext context, Details detailsData) {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: detailsData.startingEquipment.isEmpty
                         ? [Text('This class does not have starting equipment')]
-                        : detailsData.startingEquipment
-                            .map((e) =>
-                                Text('${e.quantity}x - ${e.equipment.name}'))
-                            .toList(),
+                        : detailsData.startingEquipment.map((e) => Text('${e.quantity}x - ${e.equipment.name}')).toList(),
                   ),
                 ],
               ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:temis_front/model/details.dart';
+import 'package:project_dd/model/details.dart';
 
 spellcastingTab(BuildContext context, Details detailsData) {
   return SingleChildScrollView(
@@ -21,10 +21,7 @@ spellcastingTab(BuildContext context, Details detailsData) {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  detailsData.name == 'Barbarian' ||
-                          detailsData.name == 'Fighter' ||
-                          detailsData.name == 'Monk' ||
-                          detailsData.name == 'Rogue'
+                  detailsData.name == 'Barbarian' || detailsData.name == 'Fighter' || detailsData.name == 'Monk' || detailsData.name == 'Rogue'
                       ? Text(
                           'Spellcasting:',
                           style: TextStyle(fontSize: 18),
@@ -38,21 +35,17 @@ spellcastingTab(BuildContext context, Details detailsData) {
                   ),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: detailsData.name == 'Barbarian' ||
-                            detailsData.name == 'Fighter' ||
-                            detailsData.name == 'Monk' ||
-                            detailsData.name == 'Rogue'
-                        ? [Text('This class does not have magic')]
-                        : detailsData.spellcasting.info
-                            .map((e) => ListTile(
-                                  title: Text(' - ${e.name}'),
-                                  subtitle: Column(
-                                    children: e.desc
-                                        .map((e) => Text('$e\n'))
-                                        .toList(),
-                                  ),
-                                ))
-                            .toList(),
+                    children:
+                        detailsData.name == 'Barbarian' || detailsData.name == 'Fighter' || detailsData.name == 'Monk' || detailsData.name == 'Rogue'
+                            ? [Text('This class does not have magic')]
+                            : detailsData.spellcasting.info
+                                .map((e) => ListTile(
+                                      title: Text(' - ${e.name}'),
+                                      subtitle: Column(
+                                        children: e.desc.map((e) => Text('$e\n')).toList(),
+                                      ),
+                                    ))
+                                .toList(),
                   ),
                 ],
               ),

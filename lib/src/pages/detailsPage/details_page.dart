@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:temis_front/common/bloc/classes/classes_bloc.dart';
-import 'package:temis_front/common/bloc/classes/classes_event.dart';
-import 'package:temis_front/common/bloc/classes/classes_state.dart';
-import 'package:temis_front/model/classes.dart';
-import 'package:temis_front/model/details.dart';
+import 'package:project_dd/common/bloc/classes/classes_bloc.dart';
+import 'package:project_dd/common/bloc/classes/classes_event.dart';
+import 'package:project_dd/common/bloc/classes/classes_state.dart';
+import 'package:project_dd/model/classes.dart';
+import 'package:project_dd/model/details.dart';
 import 'package:unicons/unicons.dart';
 
 import 'components/equipment_tab.dart';
@@ -26,8 +26,7 @@ class _DetailsPageState extends State<DetailsPage> {
 
   @override
   void initState() {
-    classesBloc = ClassesBloc()
-      ..add(ClassInfoFetchEvent(classInfoName: widget.classes.name));
+    classesBloc = ClassesBloc()..add(ClassInfoFetchEvent(classInfoName: widget.classes.name));
     super.initState();
   }
 

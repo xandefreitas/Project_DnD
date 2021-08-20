@@ -1,9 +1,9 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:temis_front/common/api/classes_webclient.dart';
-import 'package:temis_front/model/classes.dart';
-import 'package:temis_front/model/details.dart';
+import 'package:project_dd/common/api/classes_webclient.dart';
+import 'package:project_dd/model/classes.dart';
+import 'package:project_dd/model/details.dart';
 
 import 'classes_event.dart';
 import 'classes_state.dart';
