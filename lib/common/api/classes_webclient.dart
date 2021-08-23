@@ -18,9 +18,9 @@ class ClassesWebClient {
     return Classes.fromJson(response.data);
   }
 
-  Future<Details> getClassInfo(String classInfoName) async {
+  Future<ClassDetails> getClassInfo(String classInfoName) async {
     final response = await _dio.get('$classesApiPath/${classInfoName.toLowerCase()}');
     validateResponse(response);
-    return Details.fromJson(response.data);
+    return ClassDetails.fromJson(response.data);
   }
 }

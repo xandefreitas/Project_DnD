@@ -1,12 +1,12 @@
-import 'package:project_dd/model/results.dart';
+import 'results.dart';
 
-class Classes {
+class Races {
   int count;
   List<Results> results;
 
-  Classes({this.count, this.results});
+  Races({this.count, this.results});
 
-  Classes.fromJson(Map<String, dynamic> json) {
+  Races.fromJson(Map<String, dynamic> json) {
     count = json['count'];
     if (json['results'] != null) {
       results = <Results>[];

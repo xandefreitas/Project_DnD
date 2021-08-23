@@ -19,7 +19,7 @@ class ClassesFetchingState extends ClassesState {}
 class ClassInfoFetchingState extends ClassesState {}
 
 class ClassInfoFetchedState extends ClassesState {
-  final Details classInfo;
+  final ClassDetails classInfo;
 
   const ClassInfoFetchedState({@required this.classInfo});
 

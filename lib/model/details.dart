@@ -1,4 +1,4 @@
-class Details {
+class ClassDetails {
   String index;
   String name;
   int hitDie;
@@ -13,7 +13,7 @@ class Details {
   String spells;
   String url;
 
-  Details(
+  ClassDetails(
       {this.index,
       this.name,
       this.hitDie,
@@ -28,7 +28,7 @@ class Details {
       this.spells,
       this.url});
 
-  Details.fromJson(Map<String, dynamic> json) {
+  ClassDetails.fromJson(Map<String, dynamic> json) {
     index = json['index'];
     name = json['name'];
     hitDie = json['hit_die'];
@@ -69,9 +69,7 @@ class Details {
         subclasses.add(new Subclasses.fromJson(v));
       });
     }
-    spellcasting = json['spellcasting'] != null
-        ? new Spellcasting.fromJson(json['spellcasting'])
-        : null;
+    spellcasting = json['spellcasting'] != null ? new Spellcasting.fromJson(json['spellcasting']) : null;
     spells = json['spells'];
     url = json['url'];
   }
@@ -82,23 +80,19 @@ class Details {
     data['name'] = this.name;
     data['hit_die'] = this.hitDie;
     if (this.proficiencyChoices != null) {
-      data['proficiency_choices'] =
-          this.proficiencyChoices.map((v) => v.toJson()).toList();
+      data['proficiency_choices'] = this.proficiencyChoices.map((v) => v.toJson()).toList();
     }
     if (this.proficiencies != null) {
-      data['proficiencies'] =
-          this.proficiencies.map((v) => v.toJson()).toList();
+      data['proficiencies'] = this.proficiencies.map((v) => v.toJson()).toList();
     }
     if (this.savingThrows != null) {
       data['saving_throws'] = this.savingThrows.map((v) => v.toJson()).toList();
     }
     if (this.startingEquipment != null) {
-      data['starting_equipment'] =
-          this.startingEquipment.map((v) => v.toJson()).toList();
+      data['starting_equipment'] = this.startingEquipment.map((v) => v.toJson()).toList();
     }
     if (this.startingEquipmentOptions != null) {
-      data['starting_equipment_options'] =
-          this.startingEquipmentOptions.map((v) => v.toJson()).toList();
+      data['starting_equipment_options'] = this.startingEquipmentOptions.map((v) => v.toJson()).toList();
     }
     data['class_levels'] = this.classLevels;
     if (this.subclasses != null) {
@@ -171,8 +165,7 @@ class StartingEquipment {
   StartingEquipment({this.equipment, this.quantity});
 
   StartingEquipment.fromJson(Map<String, dynamic> json) {
-    equipment =
-        json['equipment'] != null ? new From.fromJson(json['equipment']) : null;
+    equipment = json['equipment'] != null ? new From.fromJson(json['equipment']) : null;
     quantity = json['quantity'];
   }
 
@@ -194,13 +187,9 @@ class FromEquipment {
   FromEquipment({this.equipment, this.quantity, this.equipmentOption});
 
   FromEquipment.fromJson(Map<String, dynamic> json) {
-    equipment = json['equipment'] != null
-        ? new FromEquipment.fromJson(json['equipment'])
-        : null;
+    equipment = json['equipment'] != null ? new FromEquipment.fromJson(json['equipment']) : null;
     quantity = json['quantity'];
-    equipmentOption = json['equipment_option'] != null
-        ? new EquipmentOption.fromJson(json['equipment_option'])
-        : null;
+    equipmentOption = json['equipment_option'] != null ? new EquipmentOption.fromJson(json['equipment_option']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -296,9 +285,7 @@ class FromEquipmentOptions {
   FromEquipmentOptions({this.equipment, this.quantity});
 
   FromEquipmentOptions.fromJson(Map<String, dynamic> json) {
-    equipment = json['equipment'] != null
-        ? new Equipment.fromJson(json['equipment'])
-        : null;
+    equipment = json['equipment'] != null ? new Equipment.fromJson(json['equipment']) : null;
     quantity = json['quantity'];
   }
 
@@ -344,8 +331,7 @@ class EquipmentOption {
   EquipmentOption.fromJson(Map<String, dynamic> json) {
     choose = json['choose'];
     type = json['type'];
-    from =
-        json['from'] != null ? new FromCategory.fromJson(json['from']) : null;
+    from = json['from'] != null ? new FromCategory.fromJson(json['from']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -365,9 +351,7 @@ class FromCategory {
   FromCategory({this.equipmentCategory});
 
   FromCategory.fromJson(Map<String, dynamic> json) {
-    equipmentCategory = json['equipment_category'] != null
-        ? new FromCategory.fromJson(json['equipment_category'])
-        : null;
+    equipmentCategory = json['equipment_category'] != null ? new FromCategory.fromJson(json['equipment_category']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -416,9 +400,7 @@ class Spellcasting {
       });
     }
     level = json['level'];
-    spellcastingAbility = json['spellcasting_ability'] != null
-        ? new From.fromJson(json['spellcasting_ability'])
-        : null;
+    spellcastingAbility = json['spellcasting_ability'] != null ? new From.fromJson(json['spellcasting_ability']) : null;
   }
 
   Map<String, dynamic> toJson() {

@@ -1,16 +1,15 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:project_dd/src/pages/classesPage/classes_list_page.dart';
+import 'package:project_dd/src/pages/racesPage/races_list_page.dart';
 
 import 'components/encyclopedia_card.dart';
 
 List<String> imgList = [
-  'https://images.unsplash.com/photo-1520342868574-5fa3804e551c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=6ff92caffcdd63681a35134a6770ed3b&auto=format&fit=crop&w=1951&q=80',
-  'https://images.unsplash.com/photo-1522205408450-add114ad53fe?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=368f45b0888aeb0b7b08e3a1084d3ede&auto=format&fit=crop&w=1950&q=80',
-  'https://images.unsplash.com/photo-1519125323398-675f0ddb6308?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=94a1e718d89ca60a6337a6008341ca50&auto=format&fit=crop&w=1950&q=80',
+  'https://imgix.kotaku.com.au/content/uploads/sites/3/2020/10/26/otv2bzzywvhkstp9prul1.jpg?ar=16%3A9&auto=format&fit=crop&q=80&w=1280&nr=20',
+  'https://www.dungeonsolvers.com/wp-content/uploads/2018/10/races_of_ravenloft_by_everwho-d3k86y7-1-640x351.jpg',
+  'https://www.gamersdecide.com/sites/default/files/styles/news_images/public/general_1.jpg',
   'https://dnd5e.info/wp-content/uploads/2018/07/30-Day-Challenge-Day-26-Favourite-Non-Magic-Item.jpg',
-  'https://images.unsplash.com/photo-1508704019882-f9cf40e475b4?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=8c6e5e3aba713b17aa1fe71ab4f0ae5b&auto=format&fit=crop&w=1352&q=80',
-  'https://images.unsplash.com/photo-1519985176271-adb1088fa94c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a0c8d632e977f94e5d312d9893258f59&auto=format&fit=crop&w=1355&q=80'
 ];
 
 class EncyclopediaPage extends StatelessWidget {
@@ -39,7 +38,7 @@ class EncyclopediaPage extends StatelessWidget {
             EncyclopediaCard(
               imageValue: 1,
               cardName: 'Races',
-              cardPage: ClassesListPage(),
+              cardPage: RacesListPage(),
             ),
             EncyclopediaCard(
               imageValue: 2,

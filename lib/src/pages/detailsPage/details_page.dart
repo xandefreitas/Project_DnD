@@ -4,8 +4,8 @@ import 'package:line_icons/line_icons.dart';
 import 'package:project_dd/common/bloc/classes/classes_bloc.dart';
 import 'package:project_dd/common/bloc/classes/classes_event.dart';
 import 'package:project_dd/common/bloc/classes/classes_state.dart';
-import 'package:project_dd/model/classes.dart';
 import 'package:project_dd/model/details.dart';
+import 'package:project_dd/model/results.dart';
 import 'package:unicons/unicons.dart';
 
 import 'components/equipment_tab.dart';
@@ -43,7 +43,7 @@ class _DetailsPageState extends State<DetailsPage> {
             );
           }
           if (state is ClassInfoFetchedState) {
-            Details detailsData = state.classInfo;
+            ClassDetails detailsData = state.classInfo;
             return DefaultTabController(
               length: 3,
               child: Scaffold(
@@ -72,9 +72,9 @@ class _DetailsPageState extends State<DetailsPage> {
                       centerTitle: true,
                     ),
                     bottom: TabBar(
-                      indicatorColor: Colors.deepPurple[300],
-                      unselectedLabelColor: Colors.white,
-                      labelColor: Colors.deepPurple[300],
+                      indicatorColor: Colors.white,
+                      unselectedLabelColor: Colors.deepPurple[300],
+                      labelColor: Colors.white,
                       labelStyle: TextStyle(fontWeight: FontWeight.bold),
                       tabs: [
                         Tab(

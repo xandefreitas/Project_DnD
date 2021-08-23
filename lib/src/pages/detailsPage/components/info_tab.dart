@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:project_dd/model/details.dart';
 
-infoTab(BuildContext context, Details detailsData) {
+infoTab(BuildContext context, ClassDetails detailsData) {
   return SingleChildScrollView(
     child: Container(
       child: Column(

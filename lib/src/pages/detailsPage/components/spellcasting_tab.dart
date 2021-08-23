@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_dd/model/details.dart';
 
-spellcastingTab(BuildContext context, Details detailsData) {
+spellcastingTab(BuildContext context, ClassDetails detailsData) {
   return SingleChildScrollView(
     child: Container(
       child: Padding(

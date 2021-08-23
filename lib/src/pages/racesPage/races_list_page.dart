@@ -1,23 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:project_dd/common/bloc/classes/classes_bloc.dart';
-import 'package:project_dd/common/bloc/classes/classes_event.dart';
-import 'package:project_dd/common/bloc/classes/classes_state.dart';
+import 'package:project_dd/common/bloc/races/races_bloc.dart';
+import 'package:project_dd/common/bloc/races/races_event.dart';
+import 'package:project_dd/common/bloc/races/races_state.dart';
 import 'package:project_dd/model/results.dart';
-import '../detailsPage/details_page.dart';
 
-class ClassesListPage extends StatefulWidget {
+class RacesListPage extends StatefulWidget {
   @override
-  _ClassesListPageState createState() => _ClassesListPageState();
+  _RacesListPageState createState() => _RacesListPageState();
 }
 
-class _ClassesListPageState extends State<ClassesListPage> {
-  ClassesBloc classesBloc;
+class _RacesListPageState extends State<RacesListPage> {
+  RacesBloc racesBloc;
 
   @override
   void initState() {
-    classesBloc = ClassesBloc()..add(ClassesFetchEvent());
+    racesBloc = RacesBloc()..add(RacesFetchEvent());
     super.initState();
   }
 
@@ -28,7 +27,7 @@ class _ClassesListPageState extends State<ClassesListPage> {
         backgroundColor: Color(0xff4d3e7d),
         centerTitle: true,
         title: Text(
-          "Classes",
+          "Races",
           style: TextStyle(fontSize: 20, color: Colors.white),
         ),
       ),
@@ -37,29 +36,29 @@ class _ClassesListPageState extends State<ClassesListPage> {
   }
 
   classesList() {
-    return BlocBuilder<ClassesBloc, ClassesState>(
-      bloc: classesBloc,
+    return BlocBuilder<RacesBloc, RacesState>(
+      bloc: racesBloc,
       builder: (context, state) {
-        if (state is ClassesFetchingState) {
+        if (state is RacesFetchingState) {
           return Center(
             child: CircularProgressIndicator(),
           );
         }
-        if (state is ClassesFetchedState) {
-          List<Results> classes = state.classes.results;
+        if (state is RacesFetchedState) {
+          List<Results> races = state.races.results;
           return ListView.builder(
-            itemCount: classes == null ? 0 : classes.length,
+            itemCount: races == null ? 0 : races.length,
             itemBuilder: (context, i) {
               return ListTile(
                 leading: CircleAvatar(
                   backgroundColor: Colors.transparent,
                   child: Image.asset(
-                    'assets/images/${classes[i].name}.png',
+                    'assets/images/${races[i].name}.png',
                     height: 40,
                   ),
                 ),
                 title: Text(
-                  '${classes[i].name}',
+                  '${races[i].name}',
                   style: TextStyle(fontSize: 20.0, color: Colors.black),
                 ),
                 trailing: Icon(
@@ -70,7 +69,7 @@ class _ClassesListPageState extends State<ClassesListPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DetailsPage(classes: classes[i]),
+                      builder: (context) => null,
                     ),
                   );
                 },
@@ -78,7 +77,7 @@ class _ClassesListPageState extends State<ClassesListPage> {
             },
           );
         }
-        if (state is ClassesErrorState) {
+        if (state is RacesErrorState) {
           print('error');
         }
 

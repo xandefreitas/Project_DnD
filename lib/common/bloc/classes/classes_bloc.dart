@@ -14,7 +14,7 @@ class ClassesBloc extends Bloc<ClassesEvent, ClassesState> {
   @override
   Stream<ClassesState> mapEventToState(ClassesEvent event) async* {
     Classes classes;
-    Details classInfo;
+    ClassDetails classInfo;
 
     try {
       if (event is ClassesFetchEvent) {
