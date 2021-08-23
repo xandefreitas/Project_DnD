@@ -69,7 +69,12 @@ class _RacesListPageState extends State<RacesListPage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => null,
+                      builder: (context) {
+                        return Scaffold(
+                          appBar: AppBar(),
+                          body: Container(),
+                        );
+                      },
                     ),
                   );
                 },
