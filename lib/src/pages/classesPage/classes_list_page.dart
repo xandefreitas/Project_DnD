@@ -54,7 +54,7 @@ class _ClassesListPageState extends State<ClassesListPage> {
                 leading: CircleAvatar(
                   backgroundColor: Colors.transparent,
                   child: Image.asset(
-                    'assets/images/${classes[i].name}.png',
+                    'assets/images/classes/${classes[i].name}.png',
                     height: 40,
                   ),
                 ),

@@ -64,7 +64,7 @@ class _DetailsPageState extends State<DetailsPage> {
                     flexibleSpace: FlexibleSpaceBar(
                       title: Center(
                         child: Image.asset(
-                          'assets/images/${widget.classes.name}.png',
+                          'assets/images/classes/${widget.classes.name}.png',
                           scale: 0.7,
                         ),
                       ),

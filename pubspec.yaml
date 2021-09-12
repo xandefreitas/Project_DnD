@@ -57,18 +57,18 @@ flutter:
   assets:
     - assets/images/perfil.png
     - assets/images/sword.png
-    - assets/images/Barbarian.png
-    - assets/images/Bard.png
-    - assets/images/Cleric.png
-    - assets/images/Druid.png
-    - assets/images/Fighter.png
-    - assets/images/Monk.png
-    - assets/images/Paladin.png
-    - assets/images/Ranger.png
-    - assets/images/Rogue.png
-    - assets/images/Sorcerer.png
-    - assets/images/Warlock.png
-    - assets/images/Wizard.png
+    - assets/images/classes/Barbarian.png
+    - assets/images/classes/Bard.png
+    - assets/images/classes/Cleric.png
+    - assets/images/classes/Druid.png
+    - assets/images/classes/Fighter.png
+    - assets/images/classes/Monk.png
+    - assets/images/classes/Paladin.png
+    - assets/images/classes/Ranger.png
+    - assets/images/classes/Rogue.png
+    - assets/images/classes/Sorcerer.png
+    - assets/images/classes/Warlock.png
+    - assets/images/classes/Wizard.png
     - assets/images/spell_book_image.png
     - assets/images/encyclopedia.png
     - assets/images/quest_chest.png
