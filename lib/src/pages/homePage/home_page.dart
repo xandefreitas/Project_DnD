@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_dd/src/pages/charactersPage/characters_list_page.dart';
 import 'package:project_dd/src/pages/classesPage/classes_list_page.dart';
 import 'package:project_dd/src/pages/encyclopediaPage/encyclopedia_page.dart';
 
@@ -77,7 +78,7 @@ class HomePage extends StatelessWidget {
                       ),
                       children: [
                         GridItem(
-                          navigatorPage: Scaffold(),
+                          navigatorPage: CharactersListPage(),
                           itemImage: Image.asset(
                             'assets/images/characters.png',
                             scale: 6,
