@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "268922423",
+    "project_id": "project-dnd-88432",
+    "storage_bucket": "project-dnd-88432.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:268922423:android:f5bc740b58f471ab15d9b2",
+        "android_client_info": {
+          "package_name": "com.example.project_dd"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "268922423-uh8s2a177kfd1pa8o10r41u8s54gchr3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWHyID0erO6Lgy-lYjCQifYNgohgJFNqs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "268922423-uh8s2a177kfd1pa8o10r41u8s54gchr3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
