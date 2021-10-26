@@ -4,6 +4,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:project_dd/common/bloc/classes/classes_bloc.dart';
 import 'package:project_dd/common/bloc/classes/classes_event.dart';
 import 'package:project_dd/common/bloc/classes/classes_state.dart';
+import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/model/details.dart';
 import 'package:project_dd/model/results.dart';
 import 'package:unicons/unicons.dart';
@@ -49,7 +50,7 @@ class _DetailsPageState extends State<DetailsPage> {
               child: Scaffold(
                 appBar: PreferredSize(
                   child: AppBar(
-                    backgroundColor: Color(0xff4d3e7d),
+                    backgroundColor: AppColors.purplePrimary,
                     leading: IconButton(
                       iconSize: 18,
                       icon: Icon(

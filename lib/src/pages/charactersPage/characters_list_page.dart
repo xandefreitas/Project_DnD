@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:project_dd/core/app_colors.dart';
 
-import 'components/character_creation_page.dart';
+import '../characterCreationPage/character_creation_page.dart';
 
 class CharactersListPage extends StatelessWidget {
   const CharactersListPage({Key key}) : super(key: key);
@@ -39,7 +40,7 @@ class CharactersListPage extends StatelessWidget {
                       children: [
                         Icon(
                           Icons.circle,
-                          color: Color(0xff4d3e7d),
+                          color: AppColors.purplePrimary,
                           size: 20,
                         ),
                         Icon(
@@ -63,7 +64,7 @@ class CharactersListPage extends StatelessWidget {
                     icon: LineIcon(
                       LineIcons.diceD20,
                       size: 48,
-                      color: Color(0xff4d3e7d),
+                      color: AppColors.purplePrimary,
                     ),
                   ),
                 ],

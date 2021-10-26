@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_dd/src/pages/classesPage/classes_list_page.dart';
+import 'package:project_dd/core/app_colors.dart';
 
 import '../encyclopedia_page.dart';
 
@@ -31,7 +31,7 @@ class EncyclopediaCard extends StatelessWidget {
             end: Alignment.bottomCenter,
             colors: [
               Colors.white,
-              Color(0xff4d3e7d),
+              AppColors.purplePrimary,
             ],
           ),
         ),
@@ -46,7 +46,7 @@ class EncyclopediaCard extends StatelessWidget {
               Divider(
                 height: 36,
                 thickness: 2,
-                color: Color(0xff4d3e7d),
+                color: AppColors.purplePrimary,
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.3,

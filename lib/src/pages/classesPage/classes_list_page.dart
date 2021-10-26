@@ -4,6 +4,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:project_dd/common/bloc/classes/classes_bloc.dart';
 import 'package:project_dd/common/bloc/classes/classes_event.dart';
 import 'package:project_dd/common/bloc/classes/classes_state.dart';
+import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/model/results.dart';
 import '../detailsPage/details_page.dart';
 
@@ -25,7 +26,7 @@ class _ClassesListPageState extends State<ClassesListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff4d3e7d),
+        backgroundColor: AppColors.purplePrimary,
         centerTitle: true,
         title: Text(
           "Classes",

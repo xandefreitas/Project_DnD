@@ -4,6 +4,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:project_dd/common/bloc/races/races_bloc.dart';
 import 'package:project_dd/common/bloc/races/races_event.dart';
 import 'package:project_dd/common/bloc/races/races_state.dart';
+import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/model/results.dart';
 
 class RacesListPage extends StatefulWidget {
@@ -24,7 +25,7 @@ class _RacesListPageState extends State<RacesListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff4d3e7d),
+        backgroundColor: AppColors.purplePrimary,
         centerTitle: true,
         title: Text(
           "Races",
@@ -53,7 +54,7 @@ class _RacesListPageState extends State<RacesListPage> {
                 leading: CircleAvatar(
                   backgroundColor: Colors.transparent,
                   child: Image.asset(
-                    'assets/images/${races[i].name}.png',
+                    'assets/images/races/${races[i].name}.png',
                     height: 40,
                   ),
                 ),

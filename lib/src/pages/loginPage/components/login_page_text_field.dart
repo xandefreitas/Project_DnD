@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_dd/core/app_colors.dart';
 
 class LoginPageTextField extends StatelessWidget {
   final String hintText;
@@ -13,28 +14,28 @@ class LoginPageTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       obscureText: isPassword,
-      cursorColor: Color(0xff4d3e7d),
+      cursorColor: AppColors.purplePrimary,
       scrollPadding: EdgeInsets.symmetric(horizontal: 20),
       decoration: InputDecoration(
         fillColor: Colors.white.withOpacity(0.5),
         filled: true,
         enabledBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Color(0xff4d3e7d),
+            color: AppColors.purplePrimary,
           ),
         ),
         focusedBorder: UnderlineInputBorder(
           borderSide: BorderSide(
-            color: Color(0xff4d3e7d),
+            color: AppColors.purplePrimary,
             width: 2,
           ),
         ),
         hintText: hintText,
         hintStyle: TextStyle(
-          color: Color(0xff4d3e7d),
+          color: AppColors.purplePrimary,
         ),
       ),
-      style: TextStyle(color: Color(0xff4d3e7d)),
+      style: TextStyle(color: AppColors.purplePrimary),
     );
   }
 }

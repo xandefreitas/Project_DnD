@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/src/pages/homePage/home_page.dart';
 
 import 'components/login_page_text_field.dart';
@@ -25,7 +26,7 @@ class LoginPage extends StatelessWidget {
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xff4d3e7d),
+                      color: AppColors.purplePrimary,
                     ),
                   ),
                 ],
@@ -65,7 +66,7 @@ class LoginPage extends StatelessWidget {
                     children: [
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xff4d3e7d),
+                          primary: AppColors.purplePrimary,
                           elevation: 0,
                           shadowColor: Colors.transparent,
                         ),
@@ -82,7 +83,7 @@ class LoginPage extends StatelessWidget {
                       ),
                       ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xff4d3e7d),
+                          primary: AppColors.purplePrimary,
                           elevation: 0,
                           shadowColor: Colors.transparent,
                         ),

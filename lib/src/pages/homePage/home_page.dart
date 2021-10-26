@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/src/pages/charactersPage/characters_list_page.dart';
-import 'package:project_dd/src/pages/classesPage/classes_list_page.dart';
 import 'package:project_dd/src/pages/encyclopediaPage/encyclopedia_page.dart';
 
 import 'components/grid_item.dart';
@@ -26,7 +26,7 @@ class HomePage extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       height: 200,
                       decoration: BoxDecoration(
-                        color: Color(0xff4d3e7d),
+                        color: AppColors.purplePrimary,
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Container(),

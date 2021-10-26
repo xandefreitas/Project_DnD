@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/model/details.dart';
 
 equipmentTab(BuildContext context, ClassDetails detailsData) {
@@ -14,7 +15,7 @@ equipmentTab(BuildContext context, ClassDetails detailsData) {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(5),
                 border: Border.all(
-                  color: Color(0xff4d3e7d),
+                  color: AppColors.purplePrimary,
                   width: 2,
                 ),
               ),

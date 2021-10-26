@@ -1,5 +1,6 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/src/pages/classesPage/classes_list_page.dart';
 import 'package:project_dd/src/pages/racesPage/races_list_page.dart';
 
@@ -22,7 +23,7 @@ class EncyclopediaPage extends StatelessWidget {
         shadowColor: Colors.transparent,
       ),
       body: Container(
-        color: Color(0xff4d3e7d),
+        color: AppColors.purplePrimary,
         height: MediaQuery.of(context).size.height,
         child: CarouselSlider(
           options: CarouselOptions(
