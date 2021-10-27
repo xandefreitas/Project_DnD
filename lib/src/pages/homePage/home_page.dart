@@ -1,75 +1,95 @@
 import 'package:flutter/material.dart';
-import 'package:project_dd/core/app_colors.dart';
+import 'package:project_dd/core/app_text_styles.dart';
 import 'package:project_dd/src/pages/charactersPage/characters_list_page.dart';
 import 'package:project_dd/src/pages/encyclopediaPage/encyclopedia_page.dart';
 
 import 'components/grid_item.dart';
+import 'components/home_app_bar_widget.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
     return Scaffold(
+      backgroundColor: Color(0xFFcccbcb),
+      key: _scaffoldKey,
+      appBar: HomeAppBarWidget(context, _scaffoldKey),
+      endDrawer: Drawer(),
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            color: Color(0xFFcccbcb),
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-              child: Column(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 200,
-                      decoration: BoxDecoration(
-                        color: AppColors.purplePrimary,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      child: Container(),
-                    ),
+        child: Container(
+          height: MediaQuery.of(context).size.height,
+          color: Color(0xFFcccbcb),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, right: 10),
+            child: Column(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    color: Colors.transparent,
+                    borderRadius: BorderRadius.circular(15),
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 10),
-                    child: Container(
-                      decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(15),
-                      ),
-                      width: MediaQuery.of(context).size.width,
-                      height: 100,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  width: MediaQuery.of(context).size.width,
+                  height: 50,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Stack(
                         children: [
-                          Text('User Level'),
-                          Text(
-                            '54',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                          Container(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: Colors.white,
+                                width: 3,
+                              ),
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(10),
+                              child: LinearProgressIndicator(
+                                backgroundColor: Colors.green[200],
+                                color: Colors.green,
+                                minHeight: 24,
+                                value: 0.4,
+                              ),
                             ),
                           ),
-                          Container(
-                            padding: EdgeInsets.symmetric(horizontal: 20),
-                            child: LinearProgressIndicator(
-                              backgroundColor: Colors.green[200],
-                              color: Colors.green,
-                              minHeight: 24,
-                              value: 0.4,
+                          Positioned(
+                            top: 0,
+                            bottom: 0,
+                            right: 0,
+                            left: 0,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'User Level:',
+                                  style: TextStyle(fontSize: 18),
+                                ),
+                                SizedBox(
+                                  width: 4,
+                                ),
+                                Text(
+                                  '54',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                         ],
                       ),
-                    ),
+                    ],
                   ),
-                  Container(
+                ),
+                Expanded(
+                  child: Container(
                     width: MediaQuery.of(context).size.width,
-                    height: 400,
                     child: GridView(
-                      physics: NeverScrollableScrollPhysics(),
+                      // physics: NeverScrollableScrollPhysics(),
                       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 2,
                         crossAxisSpacing: 10,
@@ -81,7 +101,7 @@ class HomePage extends StatelessWidget {
                           navigatorPage: CharactersListPage(),
                           itemImage: Image.asset(
                             'assets/images/characters.png',
-                            scale: 6,
+                            fit: BoxFit.fill,
                           ),
                           itemLabel: 'Characters',
                         ),
@@ -89,7 +109,7 @@ class HomePage extends StatelessWidget {
                           navigatorPage: EncyclopediaPage(),
                           itemImage: Image.asset(
                             'assets/images/encyclopedia.png',
-                            scale: 3,
+                            fit: BoxFit.fill,
                           ),
                           itemLabel: 'Encyclopedia',
                         ),
@@ -97,7 +117,7 @@ class HomePage extends StatelessWidget {
                           navigatorPage: Scaffold(),
                           itemImage: Image.asset(
                             'assets/images/spell_book_image.png',
-                            scale: 2.5,
+                            fit: BoxFit.fill,
                           ),
                           itemLabel: 'Spells',
                         ),
@@ -105,19 +125,23 @@ class HomePage extends StatelessWidget {
                           navigatorPage: Scaffold(),
                           itemImage: Image.asset(
                             'assets/images/quest_chest.png',
-                            scale: 4.5,
+                            fit: BoxFit.fill,
                           ),
                           itemLabel: 'Quests',
                         ),
                       ],
                     ),
                   ),
-                ],
-              ),
+                ),
+              ],
             ),
           ),
         ),
       ),
     );
+  }
+
+  openDrawer(BuildContext context) {
+    Scaffold.of(context).openEndDrawer();
   }
 }

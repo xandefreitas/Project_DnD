@@ -47,47 +47,51 @@ class _RacesListPageState extends State<RacesListPage> {
         }
         if (state is RacesFetchedState) {
           List<Results> races = state.races.results;
-          return ListView.builder(
-            itemCount: races == null ? 0 : races.length,
-            itemBuilder: (context, i) {
-              return ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  child: Image.asset(
-                    'assets/images/races/${races[i].name}.png',
-                    height: 40,
-                  ),
-                ),
-                title: Text(
-                  '${races[i].name}',
-                  style: TextStyle(fontSize: 20.0, color: Colors.black),
-                ),
-                trailing: Icon(
-                  LineIcons.angleRight,
-                  size: 20,
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return Scaffold(
-                          appBar: AppBar(),
-                          body: Container(),
-                        );
-                      },
-                    ),
-                  );
-                },
-              );
-            },
-          );
+          return raceListBody(races);
         }
         if (state is RacesErrorState) {
-          print('error');
+          print(state.cause);
         }
 
         return Container();
+      },
+    );
+  }
+
+  ListView raceListBody(List<Results> races) {
+    return ListView.builder(
+      itemCount: races == null ? 0 : races.length,
+      itemBuilder: (context, i) {
+        return ListTile(
+          leading: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            child: Image.asset(
+              'assets/images/races/${races[i].name}.png',
+              height: 40,
+            ),
+          ),
+          title: Text(
+            '${races[i].name}',
+            style: TextStyle(fontSize: 20.0, color: Colors.black),
+          ),
+          trailing: Icon(
+            LineIcons.angleRight,
+            size: 20,
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return Scaffold(
+                    appBar: AppBar(),
+                    body: Container(),
+                  );
+                },
+              ),
+            );
+          },
+        );
       },
     );
   }

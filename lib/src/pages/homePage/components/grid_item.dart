@@ -27,13 +27,19 @@ class GridItem extends StatelessWidget {
         ),
         child: Padding(
           padding: const EdgeInsets.symmetric(vertical: 8),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          child: Stack(
             children: [
-              Container(
-                child: itemImage,
+              Align(
+                child: Container(
+                  padding: EdgeInsets.all(16),
+                  alignment: Alignment.topCenter,
+                  child: itemImage,
+                ),
               ),
-              Text(itemLabel),
+              Align(
+                alignment: Alignment.bottomCenter,
+                child: Text(itemLabel),
+              ),
             ],
           ),
         ),

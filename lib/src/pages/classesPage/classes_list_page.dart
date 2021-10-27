@@ -48,42 +48,46 @@ class _ClassesListPageState extends State<ClassesListPage> {
         }
         if (state is ClassesFetchedState) {
           List<Results> classes = state.classes.results;
-          return ListView.builder(
-            itemCount: classes == null ? 0 : classes.length,
-            itemBuilder: (context, i) {
-              return ListTile(
-                leading: CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  child: Image.asset(
-                    'assets/images/classes/${classes[i].name}.png',
-                    height: 40,
-                  ),
-                ),
-                title: Text(
-                  '${classes[i].name}',
-                  style: TextStyle(fontSize: 20.0, color: Colors.black),
-                ),
-                trailing: Icon(
-                  LineIcons.angleRight,
-                  size: 20,
-                ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => DetailsPage(classes: classes[i]),
-                    ),
-                  );
-                },
-              );
-            },
-          );
+          return classesListBody(classes);
         }
         if (state is ClassesErrorState) {
-          print('error');
+          print(state.cause);
         }
 
         return Container();
+      },
+    );
+  }
+
+  ListView classesListBody(List<Results> classes) {
+    return ListView.builder(
+      itemCount: classes == null ? 0 : classes.length,
+      itemBuilder: (context, i) {
+        return ListTile(
+          leading: CircleAvatar(
+            backgroundColor: Colors.transparent,
+            child: Image.asset(
+              'assets/images/classes/${classes[i].name}.png',
+              height: 40,
+            ),
+          ),
+          title: Text(
+            '${classes[i].name}',
+            style: TextStyle(fontSize: 20.0, color: Colors.black),
+          ),
+          trailing: Icon(
+            LineIcons.angleRight,
+            size: 20,
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailsPage(classes: classes[i]),
+              ),
+            );
+          },
+        );
       },
     );
   }

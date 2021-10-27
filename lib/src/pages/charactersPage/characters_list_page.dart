@@ -58,7 +58,7 @@ class CharactersListPage extends StatelessWidget {
                     onPressed: () => Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => CharacterCreationPage(),
+                        builder: (context) => CharacterCreationContainer(),
                       ),
                     ),
                     icon: LineIcon(
