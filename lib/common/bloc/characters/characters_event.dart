@@ -16,3 +16,10 @@ class CharacterCreationEvent extends CharactersEvent {
   @override
   List<Object> get props => [];
 }
+
+class CharacterListFetchEvent extends CharactersEvent {
+  const CharacterListFetchEvent();
+
+  @override
+  List<Object> get props => [];
+}

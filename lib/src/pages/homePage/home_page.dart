@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:project_dd/core/app_text_styles.dart';
 import 'package:project_dd/src/pages/charactersPage/characters_list_page.dart';
 import 'package:project_dd/src/pages/encyclopediaPage/encyclopedia_page.dart';
 
@@ -98,7 +97,7 @@ class HomePage extends StatelessWidget {
                       ),
                       children: [
                         GridItem(
-                          navigatorPage: CharactersListPage(),
+                          navigatorPage: CharactersListContainer(),
                           itemImage: Image.asset(
                             'assets/images/characters.png',
                             fit: BoxFit.fill,

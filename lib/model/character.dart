@@ -1,4 +1,5 @@
 class Character {
+  String id;
   String name;
   List<String> classes;
   String race;
@@ -28,10 +29,12 @@ class Character {
     this.ideals,
     this.bonds,
     this.flaws,
+    this.id,
   });
 
   Character.fromJson(Map<String, dynamic> json) {
     alignment = json['alignment'];
+    id = json['id'];
     atributes = json['atributes'] != null ? new Atributes.fromJson(json['atributes']) : null;
     bonds = json['bonds'].cast<String>();
     classes = json['classes'].cast<String>();
@@ -50,6 +53,7 @@ class Character {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['alignment'] = this.alignment;
+    data['id'] = this.id;
     if (this.atributes != null) {
       data['atributes'] = this.atributes.toJson();
     }

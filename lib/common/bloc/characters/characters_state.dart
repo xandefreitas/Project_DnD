@@ -26,6 +26,17 @@ class CreatedCharacterState extends CharactersState {
   List<Object> get props => [this.characterID];
 }
 
+class CharactersListFetchingState extends CharactersState {}
+
+class CharactersListFetchedState extends CharactersState {
+  final List<Character> characters;
+
+  const CharactersListFetchedState({@required this.characters});
+
+  @override
+  List<Object> get props => [this.characters];
+}
+
 class CharactersErrorState extends CharactersState {
   final dynamic exception;
   final CharactersEvent event;
