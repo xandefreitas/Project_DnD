@@ -17,6 +17,24 @@ class CharacterCreationEvent extends CharactersEvent {
   List<Object> get props => [];
 }
 
+class CharacterUpdateEvent extends CharactersEvent {
+  final Character character;
+
+  const CharacterUpdateEvent(this.character);
+
+  @override
+  List<Object> get props => [];
+}
+
+class CharacterDeleteEvent extends CharactersEvent {
+  final Character character;
+
+  const CharacterDeleteEvent(this.character);
+
+  @override
+  List<Object> get props => [];
+}
+
 class CharacterListFetchEvent extends CharactersEvent {
   const CharacterListFetchEvent();
 

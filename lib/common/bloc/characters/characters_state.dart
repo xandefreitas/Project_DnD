@@ -26,6 +26,28 @@ class CreatedCharacterState extends CharactersState {
   List<Object> get props => [this.characterID];
 }
 
+class UpdatingCharacterState extends CharactersState {}
+
+class UpdatedCharacterState extends CharactersState {
+  final String characterID;
+
+  const UpdatedCharacterState({@required this.characterID});
+
+  @override
+  List<Object> get props => [this.characterID];
+}
+
+class DeletingCharacterState extends CharactersState {}
+
+class DeletedCharacterState extends CharactersState {
+  final String characterID;
+
+  const DeletedCharacterState({@required this.characterID});
+
+  @override
+  List<Object> get props => [this.characterID];
+}
+
 class CharactersListFetchingState extends CharactersState {}
 
 class CharactersListFetchedState extends CharactersState {

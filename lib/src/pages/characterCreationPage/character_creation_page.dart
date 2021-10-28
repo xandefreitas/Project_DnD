@@ -48,7 +48,7 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
       charm: 15,
     ),
     bonds: [''],
-    classes: [''],
+    characterClass: 'druid',
     equipment: [''],
     experience: 99.9,
     flaws: [''],

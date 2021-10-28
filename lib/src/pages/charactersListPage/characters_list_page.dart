@@ -93,11 +93,19 @@ class _CharactersListPageState extends State<CharactersListPage> {
                           children: [
                             ...characters
                                 .map(
-                                  (e) => Card(
-                                    child: Container(
-                                      height: 100,
-                                      child: Center(
-                                        child: Text('${e.name}'),
+                                  (e) => InkWell(
+                                    onTap: () {},
+                                    child: Card(
+                                      child: Container(
+                                        height: 100,
+                                        child: Column(
+                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                          children: [
+                                            Text('Character ID: ${e.id}'),
+                                            Text('Name: ${e.name}'),
+                                            Text('Level: ${e.level}'),
+                                          ],
+                                        ),
                                       ),
                                     ),
                                   ),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_dd/src/pages/charactersPage/characters_list_page.dart';
+import 'package:project_dd/src/pages/charactersListPage/characters_list_page.dart';
 import 'package:project_dd/src/pages/encyclopediaPage/encyclopedia_page.dart';
 
 import 'components/grid_item.dart';

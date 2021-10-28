@@ -1,7 +1,7 @@
 class Character {
   String id;
   String name;
-  List<String> classes;
+  String characterClass;
   String race;
   String alignment;
   double experience;
@@ -16,7 +16,7 @@ class Character {
   List<String> flaws;
   Character({
     this.name,
-    this.classes,
+    this.characterClass,
     this.race,
     this.alignment,
     this.experience,
@@ -37,7 +37,7 @@ class Character {
     id = json['id'];
     atributes = json['atributes'] != null ? new Atributes.fromJson(json['atributes']) : null;
     bonds = json['bonds'].cast<String>();
-    classes = json['classes'].cast<String>();
+    characterClass = json['characterClass'].cast<String>();
     equipment = json['equipment'].cast<String>();
     experience = json['experience'];
     flaws = json['flaws'].cast<String>();
@@ -58,7 +58,7 @@ class Character {
       data['atributes'] = this.atributes.toJson();
     }
     data['bonds'] = this.bonds;
-    data['classes'] = this.classes;
+    data['characterClass'] = this.characterClass;
     data['equipment'] = this.equipment;
     data['experience'] = this.experience;
     data['flaws'] = this.flaws;
