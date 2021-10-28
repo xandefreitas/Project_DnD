@@ -27,16 +27,16 @@ class CharacterUpdateEvent extends CharactersEvent {
 }
 
 class CharacterDeleteEvent extends CharactersEvent {
-  final Character character;
+  final String characterID;
 
-  const CharacterDeleteEvent(this.character);
+  const CharacterDeleteEvent(this.characterID);
 
   @override
   List<Object> get props => [];
 }
 
-class CharacterListFetchEvent extends CharactersEvent {
-  const CharacterListFetchEvent();
+class CharactersListFetchEvent extends CharactersEvent {
+  const CharactersListFetchEvent();
 
   @override
   List<Object> get props => [];

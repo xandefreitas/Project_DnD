@@ -28,10 +28,10 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
       }
       if (event is CharacterDeleteEvent) {
         yield DeletingCharacterState();
-        final characterID = await _playerWebClient.updateCharacter(event.character);
+        final characterID = await _playerWebClient.deleteCharacter(event.characterID);
         yield DeletedCharacterState(characterID: characterID);
       }
-      if (event is CharacterListFetchEvent) {
+      if (event is CharactersListFetchEvent) {
         yield CharactersListFetchingState();
         final List<Character> characters = await _playerWebClient.getCharactersList();
         yield CharactersListFetchedState(characters: characters);

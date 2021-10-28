@@ -11,17 +11,17 @@ import 'components/stats_field_widget.dart';
 import 'components/text_box_widget.dart';
 
 class CharacterCreationContainer extends StatelessWidget {
-  final Function recarregarPagina;
+  final Function pageReload;
   const CharacterCreationContainer({
     Key key,
-    this.recarregarPagina,
+    this.pageReload,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => CharactersBloc(),
-      child: CharacterCreationPage(recarregarLista: recarregarPagina),
+      child: CharacterCreationPage(recarregarLista: pageReload),
     );
   }
 }

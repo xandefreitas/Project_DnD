@@ -29,16 +29,16 @@ class PlayerWebClient {
     );
     validateResponse(response);
     //TODO check response after characterPage is finished
-    return response.data['name'];
+    return response.statusMessage;
   }
 
-  Future<String> deleteCharacter(Character character) async {
+  Future<String> deleteCharacter(String characterID) async {
     final response = await _dio.delete(
-      '$playerApiPath/${character.id}.json',
+      '$playerApiPath/$characterID.json',
     );
     validateResponse(response);
 
-    return response.data['name'];
+    return response.statusMessage;
   }
 
   Future<List<Character>> getCharactersList() async {
@@ -53,13 +53,20 @@ class PlayerWebClient {
       charactersList.add(
         Character(
           id: key.toString(),
-          alignment: value["alignment"],
-          characterClass: value["characterClass"],
-          experience: value["experience"],
-          level: value["level"],
-          name: value["name"],
-          race: value["race"],
-          sex: value["sex"],
+          name: value['name'],
+          characterClass: value['characterClass'],
+          race: value['race'],
+          alignment: value['alignment'],
+          experience: value['experience'],
+          level: value['level'],
+          sex: value['sex'],
+          atributes: Atributes(strenght: value['atributes']['strenght']),
+          skills: <String>[...value['skills']],
+          equipment: <String>[...value['equipment']],
+          personalityTraits: <String>[...value['personalityTraits']],
+          ideals: <String>[...value['ideals']],
+          bonds: <String>[...value['bonds']],
+          flaws: <String>[...value['flaws']],
         ),
       );
     });

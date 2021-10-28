@@ -7,6 +7,7 @@ import 'package:project_dd/common/bloc/characters/characters_event.dart';
 import 'package:project_dd/common/bloc/characters/characters_state.dart';
 import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/model/character.dart';
+import 'package:project_dd/src/pages/characterDetailsPage/character_details_page.dart';
 
 import '../characterCreationPage/character_creation_page.dart';
 
@@ -36,7 +37,7 @@ class _CharactersListPageState extends State<CharactersListPage> {
   List<Character> characters = <Character>[];
   @override
   void initState() {
-    context.read<CharactersBloc>().add(CharacterListFetchEvent());
+    context.read<CharactersBloc>().add(CharactersListFetchEvent());
     super.initState();
   }
 
@@ -56,6 +57,14 @@ class _CharactersListPageState extends State<CharactersListPage> {
               characters = state.characters;
               isLoading = false;
             });
+          }
+          if (state is DeletingCharacterState) {
+            setState(() {
+              isLoading = true;
+            });
+          }
+          if (state is DeletedCharacterState) {
+            reload();
           }
           if (state is CharactersErrorState) {
             print(state.exception.toString());
@@ -93,17 +102,61 @@ class _CharactersListPageState extends State<CharactersListPage> {
                           children: [
                             ...characters
                                 .map(
-                                  (e) => InkWell(
-                                    onTap: () {},
+                                  (character) => InkWell(
+                                    onTap: () => Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) => CharacterDetailsContainer(
+                                          pageReload: reload,
+                                          character: character,
+                                        ),
+                                      ),
+                                    ),
                                     child: Card(
                                       child: Container(
                                         height: 100,
-                                        child: Column(
-                                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                        child: Row(
+                                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
-                                            Text('Character ID: ${e.id}'),
-                                            Text('Name: ${e.name}'),
-                                            Text('Level: ${e.level}'),
+                                            Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Text('Character ID: ${character.id}'),
+                                                Text('Name: ${character.name}'),
+                                                Text('Level: ${character.level}'),
+                                              ],
+                                            ),
+                                            InkWell(
+                                              child: Icon(Icons.delete),
+                                              onTap: () {
+                                                showDialog(
+                                                  context: context,
+                                                  builder: (ctx) {
+                                                    return AlertDialog(
+                                                      title: Text('Character Delete'),
+                                                      content: Text('Do you really want to delete this character?'),
+                                                      actions: [
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            Navigator.pop(context);
+                                                          },
+                                                          child: Text('No'),
+                                                        ),
+                                                        TextButton(
+                                                          onPressed: () {
+                                                            context.read<CharactersBloc>().add(CharacterDeleteEvent(character.id));
+
+                                                            Navigator.pop(context);
+                                                          },
+                                                          child: Text('Yes'),
+                                                        ),
+                                                      ],
+                                                    );
+                                                  },
+                                                );
+                                              },
+                                            )
                                           ],
                                         ),
                                       ),
@@ -144,7 +197,7 @@ class _CharactersListPageState extends State<CharactersListPage> {
                                   context,
                                   MaterialPageRoute(
                                     builder: (context) => CharacterCreationContainer(
-                                      recarregarPagina: reload,
+                                      pageReload: reload,
                                     ),
                                   ),
                                 ),
@@ -167,6 +220,6 @@ class _CharactersListPageState extends State<CharactersListPage> {
   }
 
   reload() {
-    context.read<CharactersBloc>().add(CharacterListFetchEvent());
+    context.read<CharactersBloc>().add(CharactersListFetchEvent());
   }
 }
