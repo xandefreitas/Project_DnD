@@ -1,11 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project_dd/common/bloc/authBloc/auth_bloc.dart';
+import 'package:project_dd/common/bloc/authBloc/auth_event.dart';
+import 'package:project_dd/common/bloc/authBloc/auth_state.dart';
 import 'package:project_dd/core/app_colors.dart';
-import 'package:project_dd/src/pages/homePage/home_page.dart';
+import 'package:project_dd/util/app_routes.dart';
 
-import 'components/login_page_text_field.dart';
+enum AuthMode {
+  Signup,
+  Login,
+}
 
-class LoginPage extends StatelessWidget {
+class LoginPageContainer extends StatelessWidget {
+  const LoginPageContainer({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocProvider(
+      create: (_) => AuthBloc(),
+      child: LoginPage(),
+    );
+  }
+}
+
+class LoginPage extends StatefulWidget {
   const LoginPage({Key key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  AuthMode _authMode = AuthMode.Login;
+  final _passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  bool isLoading = false;
+  Map<String, String> _authData = {
+    'email': '',
+    'password': '',
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +55,7 @@ class LoginPage extends StatelessWidget {
               child: Column(
                 children: [
                   Text(
-                    'Project EXP',
+                    'Project D&D',
                     style: TextStyle(
                       fontSize: 32,
                       fontWeight: FontWeight.bold,
@@ -47,62 +80,253 @@ class LoginPage extends StatelessWidget {
             left: 0,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 40),
-              child: Column(
-                children: [
-                  LoginPageTextField(
-                    isPassword: false,
-                    hintText: 'User',
-                  ),
-                  SizedBox(height: 4),
-                  LoginPageTextField(
-                    isPassword: true,
-                    hintText: 'Password',
-                  ),
-                  SizedBox(
-                    height: 8,
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.purplePrimary,
-                          elevation: 0,
-                          shadowColor: Colors.transparent,
+              child: BlocConsumer<AuthBloc, AuthState>(
+                listener: (context, state) {
+                  try {
+                    if (state is SignUpFetchingState) {
+                      setState(() {
+                        isLoading = true;
+                      });
+                    }
+                    if (state is SignUpFetchedState) {
+                      setState(() {
+                        isLoading = false;
+                        context.read<AuthBloc>().add(SignInFetchEvent(_authData['email'], _authData['password']));
+                      });
+                    }
+                    if (state is SignInFetchingState) {
+                      setState(() {
+                        isLoading = true;
+                      });
+                    }
+                    if (state is SignInFetchedState) {
+                      setState(() {
+                        isLoading = false;
+                        Navigator.pushReplacementNamed(context, AppRoutes.HOME);
+                      });
+                    }
+                    if (state is AuthErrorState) {
+                      showDialog(
+                        context: context,
+                        builder: (ctx) {
+                          return AlertDialog(
+                            title: Text('Error!'),
+                            content: Text(state.cause.toString()),
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    isLoading = false;
+                                  });
+                                  Navigator.pop(context);
+                                },
+                                child: Text('Ok'),
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }
+                  } catch (error) {
+                    showDialog(
+                      context: context,
+                      builder: (ctx) {
+                        return AlertDialog(
+                          title: Text('Error!'),
+                          content: Text('Unexpected error.'),
+                          actions: [
+                            TextButton(
+                              onPressed: () {
+                                setState(() {
+                                  isLoading = false;
+                                });
+                                Navigator.pop(context);
+                              },
+                              child: Text('Ok'),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  }
+                },
+                builder: (context, state) {
+                  return Form(
+                    key: _formKey,
+                    child: Column(
+                      children: [
+                        TextFormField(
+                            keyboardType: TextInputType.emailAddress,
+                            readOnly: isLoading,
+                            cursorColor: AppColors.purplePrimary,
+                            scrollPadding: EdgeInsets.symmetric(horizontal: 20),
+                            decoration: InputDecoration(
+                              fillColor: Colors.white.withOpacity(0.5),
+                              filled: true,
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: AppColors.purplePrimary,
+                                ),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: AppColors.purplePrimary,
+                                  width: 2,
+                                ),
+                              ),
+                              hintText: 'Email',
+                              hintStyle: TextStyle(
+                                color: AppColors.purplePrimary,
+                              ),
+                            ),
+                            style: TextStyle(color: AppColors.purplePrimary),
+                            onSaved: (value) {
+                              _authData['email'] = value;
+                            },
+                            validator: (value) {
+                              final email = value ?? '';
+                              if (email.trim().isEmpty || !email.contains('@')) {
+                                return 'Invalid Email!';
+                              }
+                              return null;
+                            }),
+                        SizedBox(height: 4),
+                        TextFormField(
+                            controller: _passwordController,
+                            keyboardType: TextInputType.text,
+                            obscureText: true,
+                            readOnly: isLoading,
+                            cursorColor: AppColors.purplePrimary,
+                            scrollPadding: EdgeInsets.symmetric(horizontal: 20),
+                            decoration: InputDecoration(
+                              fillColor: Colors.white.withOpacity(0.5),
+                              filled: true,
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: AppColors.purplePrimary,
+                                ),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: AppColors.purplePrimary,
+                                  width: 2,
+                                ),
+                              ),
+                              hintText: 'Password',
+                              hintStyle: TextStyle(
+                                color: AppColors.purplePrimary,
+                              ),
+                            ),
+                            style: TextStyle(color: AppColors.purplePrimary),
+                            onSaved: (value) {
+                              _authData['password'] = value;
+                            },
+                            validator: (value) {
+                              final password = value ?? '';
+                              if (password.isEmpty || password.length <= 5) {
+                                return 'Invalid Password!';
+                              }
+                              return null;
+                            }),
+                        SizedBox(height: 4),
+                        isSignup
+                            ? TextFormField(
+                                keyboardType: TextInputType.text,
+                                obscureText: true,
+                                readOnly: isLoading,
+                                cursorColor: AppColors.purplePrimary,
+                                scrollPadding: EdgeInsets.symmetric(horizontal: 20),
+                                decoration: InputDecoration(
+                                  fillColor: Colors.white.withOpacity(0.5),
+                                  filled: true,
+                                  enabledBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: AppColors.purplePrimary,
+                                    ),
+                                  ),
+                                  focusedBorder: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: AppColors.purplePrimary,
+                                      width: 2,
+                                    ),
+                                  ),
+                                  hintText: 'Confirm Password',
+                                  hintStyle: TextStyle(
+                                    color: AppColors.purplePrimary,
+                                  ),
+                                ),
+                                style: TextStyle(color: AppColors.purplePrimary),
+                                validator: isLogin
+                                    ? null
+                                    : (value) {
+                                        final password = value ?? '';
+                                        if (password != _passwordController.text) {
+                                          return 'Passwords do not match!';
+                                        }
+                                        return null;
+                                      },
+                              )
+                            : Container(),
+                        SizedBox(
+                          height: 8,
                         ),
-                        onPressed: () {},
-                        child: Text(
-                          'Registrar-se',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          primary: AppColors.purplePrimary,
-                          elevation: 0,
-                          shadowColor: Colors.transparent,
-                        ),
-                        onPressed: () => Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => HomePage(),
-                          ),
-                        ),
-                        child: Text(
-                          'Entrar',
-                          style: TextStyle(
-                            color: Colors.white,
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
-                ],
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            !isLoading
+                                ? ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: AppColors.purplePrimary,
+                                      elevation: 0,
+                                      shadowColor: Colors.transparent,
+                                    ),
+                                    onPressed: () {
+                                      _switchAuthMode();
+                                    },
+                                    child: Text(
+                                      isLogin ? 'Register' : 'Cancel',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                : Container(),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            !isLoading
+                                ? ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      primary: AppColors.purplePrimary,
+                                      elevation: 0,
+                                      shadowColor: Colors.transparent,
+                                    ),
+                                    onPressed: () => _submit(),
+                                    child: Text(
+                                      isLogin ? 'Login' : 'Confirm',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  )
+                                : Padding(
+                                    padding: const EdgeInsets.only(right: 8, top: 10, bottom: 10),
+                                    child: Container(
+                                      height: 20,
+                                      width: 20,
+                                      child: Center(
+                                        child: CircularProgressIndicator(
+                                          color: AppColors.purplePrimary,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                          ],
+                        )
+                      ],
+                    ),
+                  );
+                },
               ),
             ),
           )
@@ -110,4 +334,35 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+
+  _submit() {
+    final isValid = _formKey.currentState?.validate() ?? false;
+    if (!isValid) {
+      return;
+    }
+    setState(() {
+      isLoading = true;
+    });
+
+    _formKey.currentState?.save();
+
+    if (isLogin) {
+      context.read<AuthBloc>().add(SignInFetchEvent(_authData['email'], _authData['password']));
+    } else {
+      context.read<AuthBloc>().add(SignUpFetchEvent(_authData['email'], _authData['password']));
+    }
+  }
+
+  _switchAuthMode() {
+    setState(() {
+      if (isLogin) {
+        _authMode = AuthMode.Signup;
+      } else {
+        _authMode = AuthMode.Login;
+      }
+    });
+  }
+
+  bool get isLogin => _authMode == AuthMode.Login;
+  bool get isSignup => _authMode == AuthMode.Signup;
 }

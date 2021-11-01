@@ -6,6 +6,7 @@ import 'package:project_dd/common/bloc/races/races_event.dart';
 import 'package:project_dd/common/bloc/races/races_state.dart';
 import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/model/results.dart';
+import 'package:project_dd/util/app_routes.dart';
 
 class RacesListPage extends StatefulWidget {
   @override
@@ -79,16 +80,9 @@ class _RacesListPageState extends State<RacesListPage> {
             size: 20,
           ),
           onTap: () {
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return Scaffold(
-                    appBar: AppBar(),
-                    body: Container(),
-                  );
-                },
-              ),
+              AppRoutes.BLANK,
             );
           },
         );

@@ -14,10 +14,6 @@ import 'components/info_tab.dart';
 import 'components/spellcasting_tab.dart';
 
 class DetailsPage extends StatefulWidget {
-  final Results classes;
-
-  DetailsPage({this.classes});
-
   @override
   _DetailsPageState createState() => _DetailsPageState();
 }
@@ -26,13 +22,9 @@ class _DetailsPageState extends State<DetailsPage> {
   ClassesBloc classesBloc;
 
   @override
-  void initState() {
-    classesBloc = ClassesBloc()..add(ClassInfoFetchEvent(classInfoName: widget.classes.name));
-    super.initState();
-  }
-
-  @override
   Widget build(context) {
+    final classes = ModalRoute.of(context).settings.arguments as Results;
+    classesBloc = ClassesBloc()..add(ClassInfoFetchEvent(classInfoName: classes.name));
     return Container(
       color: Colors.white,
       child: BlocBuilder<ClassesBloc, ClassesState>(
@@ -60,12 +52,12 @@ class _DetailsPageState extends State<DetailsPage> {
                       onPressed: () => Navigator.pop(context),
                       color: Colors.white,
                     ),
-                    title: Text(widget.classes.name),
+                    title: Text(classes.name),
                     centerTitle: true,
                     flexibleSpace: FlexibleSpaceBar(
                       title: Center(
                         child: Image.asset(
-                          'assets/images/classes/${widget.classes.name}.png',
+                          'assets/images/classes/${classes.name}.png',
                           scale: 0.7,
                         ),
                       ),

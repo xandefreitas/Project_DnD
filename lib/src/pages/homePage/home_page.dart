@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project_dd/src/pages/charactersListPage/characters_list_page.dart';
-import 'package:project_dd/src/pages/encyclopediaPage/encyclopedia_page.dart';
+import 'package:project_dd/util/app_routes.dart';
 
 import 'components/grid_item.dart';
 import 'components/home_app_bar_widget.dart';
@@ -97,7 +96,7 @@ class HomePage extends StatelessWidget {
                       ),
                       children: [
                         GridItem(
-                          navigatorPage: CharactersListContainer(),
+                          navigatorPage: AppRoutes.CHARACTER_LIST,
                           itemImage: Image.asset(
                             'assets/images/characters.png',
                             fit: BoxFit.fill,
@@ -105,7 +104,7 @@ class HomePage extends StatelessWidget {
                           itemLabel: 'Characters',
                         ),
                         GridItem(
-                          navigatorPage: EncyclopediaPage(),
+                          navigatorPage: AppRoutes.ENCYCLOPEDIA,
                           itemImage: Image.asset(
                             'assets/images/encyclopedia.png',
                             fit: BoxFit.fill,
@@ -113,7 +112,7 @@ class HomePage extends StatelessWidget {
                           itemLabel: 'Encyclopedia',
                         ),
                         GridItem(
-                          navigatorPage: Scaffold(),
+                          navigatorPage: AppRoutes.BLANK,
                           itemImage: Image.asset(
                             'assets/images/spell_book_image.png',
                             fit: BoxFit.fill,
@@ -121,7 +120,7 @@ class HomePage extends StatelessWidget {
                           itemLabel: 'Spells',
                         ),
                         GridItem(
-                          navigatorPage: Scaffold(),
+                          navigatorPage: AppRoutes.BLANK,
                           itemImage: Image.asset(
                             'assets/images/quest_chest.png',
                             fit: BoxFit.fill,

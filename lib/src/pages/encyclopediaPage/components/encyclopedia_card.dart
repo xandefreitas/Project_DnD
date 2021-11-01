@@ -6,7 +6,7 @@ import '../encyclopedia_page.dart';
 class EncyclopediaCard extends StatelessWidget {
   final int imageValue;
   final String cardName;
-  final Widget cardPage;
+  final String cardPage;
   const EncyclopediaCard({
     Key key,
     @required this.imageValue,
@@ -17,11 +17,9 @@ class EncyclopediaCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push(
+      onTap: () => Navigator.pushNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => cardPage,
-        ),
+        cardPage,
       ),
       child: Container(
         decoration: BoxDecoration(

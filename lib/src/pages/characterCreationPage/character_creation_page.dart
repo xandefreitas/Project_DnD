@@ -142,7 +142,7 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Expanded(
-                                      flex: 3,
+                                      flex: 4,
                                       child: Column(
                                         children: [
                                           Container(
@@ -163,35 +163,22 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
                                     ),
                                     SizedBox(width: 8),
                                     Expanded(
-                                      flex: 7,
-                                      child: TextBoxWiget(
-                                        label: 'skills',
-                                        maxLines: 3,
-                                      ),
-                                    ),
+                                        flex: 6,
+                                        child: Row(
+                                          children: [
+                                            Container(
+                                              decoration: BoxDecoration(
+                                                border: Border.all(),
+                                              ),
+                                              child: Text('text'),
+                                            ),
+                                          ],
+                                        )),
                                   ],
                                 ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 8),
-                                  child: TextBoxWiget(
-                                    label: 'equipment',
-                                    maxLines: 6,
-                                  ),
-                                ),
-                                Column(
-                                  children: [
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                      children: [
-                                        StatsFieldWidget(statName: 'STR'),
-                                        StatsFieldWidget(statName: 'DEX'),
-                                        StatsFieldWidget(statName: 'CON'),
-                                        StatsFieldWidget(statName: 'INT'),
-                                        StatsFieldWidget(statName: 'WIS'),
-                                        StatsFieldWidget(statName: 'CHA'),
-                                      ],
-                                    ),
-                                  ],
+                                TextBoxWiget(
+                                  label: 'skills',
+                                  maxLines: 3,
                                 ),
                                 Row(
                                   children: [
@@ -222,13 +209,28 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
                                       ),
                                     ),
                                     SizedBox(
-                                      width: 16,
+                                      width: 8,
                                     ),
                                     Flexible(
                                       child: TextBoxWiget(
                                         label: 'flaws',
                                         maxLines: 4,
                                       ),
+                                    ),
+                                  ],
+                                ),
+                                Column(
+                                  children: [
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                      children: [
+                                        StatsFieldWidget(statName: 'STR'),
+                                        StatsFieldWidget(statName: 'DEX'),
+                                        StatsFieldWidget(statName: 'CON'),
+                                        StatsFieldWidget(statName: 'INT'),
+                                        StatsFieldWidget(statName: 'WIS'),
+                                        StatsFieldWidget(statName: 'CHA'),
+                                      ],
                                     ),
                                   ],
                                 ),

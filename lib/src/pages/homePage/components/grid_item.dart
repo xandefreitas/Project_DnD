@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class GridItem extends StatelessWidget {
   final String itemLabel;
   final Image itemImage;
-  final Widget navigatorPage;
+  final String navigatorPage;
   const GridItem({
     Key key,
     @required this.itemImage,
@@ -14,11 +14,9 @@ class GridItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Navigator.push(
+      onTap: () => Navigator.pushNamed(
         context,
-        MaterialPageRoute(
-          builder: (context) => navigatorPage,
-        ),
+        navigatorPage,
       ),
       child: Container(
         decoration: BoxDecoration(

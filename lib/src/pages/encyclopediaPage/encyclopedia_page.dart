@@ -1,8 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:project_dd/core/app_colors.dart';
-import 'package:project_dd/src/pages/classesPage/classes_list_page.dart';
-import 'package:project_dd/src/pages/racesPage/races_list_page.dart';
+import 'package:project_dd/util/app_routes.dart';
 
 import 'components/encyclopedia_card.dart';
 
@@ -34,22 +33,22 @@ class EncyclopediaPage extends StatelessWidget {
             EncyclopediaCard(
               imageValue: 0,
               cardName: 'Classes',
-              cardPage: ClassesListPage(),
+              cardPage: AppRoutes.CLASSES,
             ),
             EncyclopediaCard(
               imageValue: 1,
               cardName: 'Races',
-              cardPage: RacesListPage(),
+              cardPage: AppRoutes.RACES,
             ),
             EncyclopediaCard(
               imageValue: 2,
               cardName: 'Monsters',
-              cardPage: ClassesListPage(),
+              cardPage: AppRoutes.BLANK,
             ),
             EncyclopediaCard(
               imageValue: 3,
               cardName: 'Equipment',
-              cardPage: ClassesListPage(),
+              cardPage: AppRoutes.BLANK,
             ),
           ],
         ),

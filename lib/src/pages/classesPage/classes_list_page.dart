@@ -6,7 +6,7 @@ import 'package:project_dd/common/bloc/classes/classes_event.dart';
 import 'package:project_dd/common/bloc/classes/classes_state.dart';
 import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/model/results.dart';
-import '../detailsPage/details_page.dart';
+import 'package:project_dd/util/app_routes.dart';
 
 class ClassesListPage extends StatefulWidget {
   @override
@@ -80,11 +80,10 @@ class _ClassesListPageState extends State<ClassesListPage> {
             size: 20,
           ),
           onTap: () {
-            Navigator.push(
+            Navigator.pushNamed(
               context,
-              MaterialPageRoute(
-                builder: (context) => DetailsPage(classes: classes[i]),
-              ),
+              AppRoutes.CLASS_DETAIL,
+              arguments: classes[i],
             );
           },
         );
