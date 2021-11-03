@@ -23,9 +23,9 @@ class _HomePageState extends State<HomePage> {
   Timer signOutTimer;
   @override
   void initState() {
-    datetime = DateTime.now().add(Duration(seconds: int.parse(widget.auth.expiresIn)));
-    timeToSignOut = datetime.difference(DateTime.now()).inSeconds;
-
+    getUserData().whenComplete(() {
+      timeToSignOut = datetime.difference(DateTime.now()).inSeconds;
+    });
     signOutTimer = new Timer.periodic(Duration(seconds: 1), (Timer timer) {
       if (timeToSignOut <= 0) {
         setState(() {
@@ -34,16 +34,11 @@ class _HomePageState extends State<HomePage> {
         autoLogout();
       } else {
         timeToSignOut--;
-        Store.saveMap(
-          'userData',
-          {
-            'auth': widget.auth,
-            'expiryDate': datetime.toIso8601String(),
-          },
-        );
+
         print(timeToSignOut);
       }
     });
+
     super.initState();
   }
 
@@ -178,6 +173,16 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  Future<void> getUserData() async {
+    final userData = await Store.getMap('userData');
+    if (userData.isEmpty) return;
+    final expiryDate = DateTime.parse(userData['expiryDate']);
+    if (expiryDate.isBefore(DateTime.now())) return;
+
+    datetime = expiryDate;
+    return datetime;
   }
 
   autoLogout() {

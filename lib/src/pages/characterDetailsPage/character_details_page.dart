@@ -6,6 +6,11 @@ import 'package:project_dd/common/bloc/characters/characters_state.dart';
 import 'package:project_dd/model/auth.dart';
 import 'package:project_dd/model/character.dart';
 
+enum ViewMode {
+  View,
+  Edit,
+}
+
 class CharacterDetailsContainer extends StatelessWidget {
   final Function pageReload;
   final Character character;
@@ -47,7 +52,7 @@ class CharacterDetailsPage extends StatefulWidget {
 
 class _CharacterCreationPageState extends State<CharacterDetailsPage> {
   bool isLoading = false;
-
+  ViewMode _viewMode = ViewMode.View;
   Character _updatedCharacter;
 
   @override

@@ -92,6 +92,11 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
             setState(() {
               isLoading = false;
             });
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(
+                content: Text('Character added!'),
+              ),
+            );
             widget.recarregarLista?.call();
             Navigator.pop(context);
           }
@@ -101,8 +106,8 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
               context: context,
               builder: (ctx) {
                 return AlertDialog(
-                  title: Text('Ocorreu um Erro!'),
-                  content: Text('Ocorreu um erro ao salvar o personagem!'),
+                  title: Text('Error!'),
+                  content: Text('There was an error while trying to add a character'),
                   actions: [
                     TextButton(
                       onPressed: () {

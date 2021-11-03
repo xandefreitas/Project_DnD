@@ -81,7 +81,7 @@ class _CharactersListPageState extends State<CharactersListPage> {
               context: context,
               builder: (ctx) {
                 return AlertDialog(
-                  title: Text('Ocorreu um Erro!'),
+                  title: Text('There was an Error!'),
                   content: Text(state.exception.toString()),
                   actions: [
                     TextButton(

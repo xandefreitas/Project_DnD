@@ -37,7 +37,7 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
         yield CharactersListFetchedState(characters: characters);
       }
     } catch (e) {
-      yield CharactersErrorState(exception: ErroUtil.validarException(e), event: event);
+      yield CharactersErrorState(exception: ErroUtil.validarException(e.response.data), event: event);
     }
   }
 }

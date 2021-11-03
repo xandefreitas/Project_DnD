@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:project_dd/common/api/auth_webclient.dart';
 import 'package:project_dd/common/bloc/authBloc/auth_bloc.dart';
 import 'package:project_dd/common/bloc/authBloc/auth_event.dart';
 import 'package:project_dd/common/bloc/authBloc/auth_state.dart';
@@ -223,7 +222,7 @@ class _LoginPageState extends State<LoginPage> {
                                   width: 2,
                                 ),
                               ),
-                              hintText: 'Password',
+                              hintText: isSignIn ? 'Password' : 'Password (6 characters minimum)',
                               hintStyle: TextStyle(
                                 color: AppColors.purplePrimary,
                               ),
@@ -267,7 +266,7 @@ class _LoginPageState extends State<LoginPage> {
                                   ),
                                 ),
                                 style: TextStyle(color: AppColors.purplePrimary),
-                                validator: isLogin
+                                validator: isSignIn
                                     ? null
                                     : (value) {
                                         final password = value ?? '';
@@ -295,7 +294,7 @@ class _LoginPageState extends State<LoginPage> {
                                       _switchAuthMode();
                                     },
                                     child: Text(
-                                      isLogin ? 'Register' : 'Cancel',
+                                      isSignIn ? 'Register' : 'Cancel',
                                       style: TextStyle(
                                         color: Colors.white,
                                       ),
@@ -314,7 +313,7 @@ class _LoginPageState extends State<LoginPage> {
                                     ),
                                     onPressed: () => _submit(),
                                     child: Text(
-                                      isLogin ? 'Login' : 'Confirm',
+                                      isSignIn ? 'Login' : 'Confirm',
                                       style: TextStyle(
                                         color: Colors.white,
                                       ),
@@ -357,7 +356,7 @@ class _LoginPageState extends State<LoginPage> {
 
     _formKey.currentState?.save();
 
-    if (isLogin) {
+    if (isSignIn) {
       context.read<AuthBloc>().add(SignInFetchEvent(_authData['email'], _authData['password']));
     } else {
       context.read<AuthBloc>().add(SignUpFetchEvent(_authData['email'], _authData['password']));
@@ -366,7 +365,7 @@ class _LoginPageState extends State<LoginPage> {
 
   _switchAuthMode() {
     setState(() {
-      if (isLogin) {
+      if (isSignIn) {
         _authMode = AuthMode.Signup;
       } else {
         _authMode = AuthMode.Login;
@@ -374,6 +373,6 @@ class _LoginPageState extends State<LoginPage> {
     });
   }
 
-  bool get isLogin => _authMode == AuthMode.Login;
+  bool get isSignIn => _authMode == AuthMode.Login;
   bool get isSignup => _authMode == AuthMode.Signup;
 }
