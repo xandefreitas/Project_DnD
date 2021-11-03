@@ -3,12 +3,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:project_dd/common/bloc/characters/characters_bloc.dart';
 import 'package:project_dd/common/bloc/characters/characters_event.dart';
 import 'package:project_dd/common/bloc/characters/characters_state.dart';
+import 'package:project_dd/model/auth.dart';
 import 'package:project_dd/model/character.dart';
 
 class CharacterDetailsContainer extends StatelessWidget {
   final Function pageReload;
   final Character character;
-  const CharacterDetailsContainer({Key key, this.pageReload, this.character}) : super(key: key);
+  final Auth auth;
+  const CharacterDetailsContainer({
+    Key key,
+    this.pageReload,
+    this.character,
+    this.auth,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +24,7 @@ class CharacterDetailsContainer extends StatelessWidget {
       child: CharacterDetailsPage(
         reloadList: pageReload,
         character: character,
+        auth: auth,
       ),
     );
   }
@@ -25,10 +33,12 @@ class CharacterDetailsContainer extends StatelessWidget {
 class CharacterDetailsPage extends StatefulWidget {
   final Function reloadList;
   final Character character;
+  final Auth auth;
   CharacterDetailsPage({
     Key key,
     this.reloadList,
     this.character,
+    this.auth,
   }) : super(key: key);
 
   @override
@@ -70,6 +80,7 @@ class _CharacterCreationPageState extends State<CharacterDetailsPage> {
           if (state is CharactersErrorState) {
             print(state.exception.toString());
             showDialog(
+              barrierDismissible: false,
               context: context,
               builder: (ctx) {
                 return AlertDialog(
@@ -98,7 +109,7 @@ class _CharacterCreationPageState extends State<CharacterDetailsPage> {
                   child: Center(
                     child: FloatingActionButton(
                       onPressed: () {
-                        context.read<CharactersBloc>().add(CharacterUpdateEvent(_updatedCharacter));
+                        context.read<CharactersBloc>().add(CharacterUpdateEvent(character: _updatedCharacter, token: widget.auth));
                       },
                     ),
                   ),

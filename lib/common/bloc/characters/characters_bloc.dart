@@ -18,22 +18,22 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     try {
       if (event is CharacterCreationEvent) {
         yield CreatingCharacterState();
-        final characterID = await _playerWebClient.createNewCharacter(event.character);
+        final characterID = await _playerWebClient.createNewCharacter(event.character, event.token);
         yield CreatedCharacterState(characterID: characterID);
       }
       if (event is CharacterUpdateEvent) {
         yield UpdatingCharacterState();
-        final characterID = await _playerWebClient.updateCharacter(event.character);
+        final characterID = await _playerWebClient.updateCharacter(event.character, event.token);
         yield UpdatedCharacterState(characterID: characterID);
       }
       if (event is CharacterDeleteEvent) {
         yield DeletingCharacterState();
-        final characterID = await _playerWebClient.deleteCharacter(event.characterID);
+        final characterID = await _playerWebClient.deleteCharacter(event.characterID, event.token);
         yield DeletedCharacterState(characterID: characterID);
       }
       if (event is CharactersListFetchEvent) {
         yield CharactersListFetchingState();
-        final List<Character> characters = await _playerWebClient.getCharactersList();
+        final List<Character> characters = await _playerWebClient.getCharactersList(event.token);
         yield CharactersListFetchedState(characters: characters);
       }
     } catch (e) {

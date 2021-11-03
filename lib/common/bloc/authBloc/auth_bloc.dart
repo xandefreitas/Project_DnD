@@ -26,6 +26,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         auth = await authWebClient.signin(event.username, event.password);
         yield SignInFetchedState(auth: auth);
       }
+      if (event is SignOutFetchEvent) {
+        yield SignOutFetchingState();
+        auth = await authWebClient.signOut();
+        yield SignOutFetchedState(auth: auth);
+      }
     } catch (e) {
       yield AuthErrorState(cause: AuthException(e.response.data['error']['message']).toString());
     }

@@ -21,4 +21,14 @@ class Auth {
     localId = json['localId'];
     registered = json['registered'];
   }
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['idToken'] = this.idToken;
+    data['email'] = this.email;
+    data['refreshToken'] = this.refreshToken;
+    data['expiresIn'] = this.expiresIn;
+    data['localId'] = this.localId;
+    data['registered'] = this.registered;
+    return data;
+  }
 }

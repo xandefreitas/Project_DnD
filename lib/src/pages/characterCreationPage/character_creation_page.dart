@@ -4,6 +4,7 @@ import 'package:line_icons/line_icons.dart';
 import 'package:project_dd/common/bloc/characters/characters_bloc.dart';
 import 'package:project_dd/common/bloc/characters/characters_event.dart';
 import 'package:project_dd/common/bloc/characters/characters_state.dart';
+import 'package:project_dd/model/auth.dart';
 import 'package:project_dd/model/character.dart';
 import 'package:project_dd/src/pages/characterCreationPage/components/app_bar_widget.dart';
 
@@ -12,23 +13,33 @@ import 'components/text_box_widget.dart';
 
 class CharacterCreationContainer extends StatelessWidget {
   final Function pageReload;
+  final Auth auth;
   const CharacterCreationContainer({
     Key key,
     this.pageReload,
+    this.auth,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
       create: (_) => CharactersBloc(),
-      child: CharacterCreationPage(recarregarLista: pageReload),
+      child: CharacterCreationPage(
+        recarregarLista: pageReload,
+        auth: auth,
+      ),
     );
   }
 }
 
 class CharacterCreationPage extends StatefulWidget {
   final Function recarregarLista;
-  CharacterCreationPage({Key key, this.recarregarLista}) : super(key: key);
+  final Auth auth;
+  CharacterCreationPage({
+    Key key,
+    this.recarregarLista,
+    this.auth,
+  }) : super(key: key);
 
   @override
   State<CharacterCreationPage> createState() => _CharacterCreationPageState();
@@ -45,7 +56,7 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
       constitution: 17,
       intelligence: 17,
       wisdom: 16,
-      charm: 15,
+      charism: 15,
     ),
     bonds: [''],
     characterClass: 'druid',
@@ -86,6 +97,7 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
           }
           if (state is CharactersErrorState) {
             showDialog(
+              barrierDismissible: false,
               context: context,
               builder: (ctx) {
                 return AlertDialog(
@@ -240,7 +252,7 @@ class _CharacterCreationPageState extends State<CharacterCreationPage> {
                                     width: MediaQuery.of(context).size.width,
                                     child: ElevatedButton(
                                       onPressed: () {
-                                        context.read<CharactersBloc>().add(CharacterCreationEvent(_character));
+                                        context.read<CharactersBloc>().add(CharacterCreationEvent(character: _character, token: widget.auth));
                                       },
                                       child: Text('Done'),
                                     ),

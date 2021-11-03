@@ -79,18 +79,18 @@ class Atributes {
   int constitution;
   int intelligence;
   int wisdom;
-  int charm;
+  int charism;
   Atributes({
     this.strenght,
     this.dexterity,
     this.constitution,
     this.intelligence,
     this.wisdom,
-    this.charm,
+    this.charism,
   });
 
   Atributes.fromJson(Map<String, dynamic> json) {
-    charm = json['charm'];
+    charism = json['charism'];
     constitution = json['constitution'];
     dexterity = json['dexterity'];
     intelligence = json['intelligence'];
@@ -99,7 +99,7 @@ class Atributes {
   }
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['charm'] = this.charm;
+    data['charism'] = this.charism;
     data['constitution'] = this.constitution;
     data['dexterity'] = this.dexterity;
     data['intelligence'] = this.intelligence;

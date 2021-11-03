@@ -33,6 +33,16 @@ class SignInFetchedState extends AuthState {
   List<Object> get props => [this.auth];
 }
 
+class SignOutFetchingState extends AuthState {}
+
+class SignOutFetchedState extends AuthState {
+  final Auth auth;
+  const SignOutFetchedState({@required this.auth});
+
+  @override
+  List<Object> get props => [this.auth];
+}
+
 class AuthErrorState extends AuthState {
   final String cause;
 

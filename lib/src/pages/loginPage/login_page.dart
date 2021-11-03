@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:project_dd/common/api/auth_webclient.dart';
 import 'package:project_dd/common/bloc/authBloc/auth_bloc.dart';
 import 'package:project_dd/common/bloc/authBloc/auth_event.dart';
 import 'package:project_dd/common/bloc/authBloc/auth_state.dart';
+import 'package:project_dd/common/data/store.dart';
 import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/util/app_routes.dart';
 
@@ -102,11 +104,19 @@ class _LoginPageState extends State<LoginPage> {
                     if (state is SignInFetchedState) {
                       setState(() {
                         isLoading = false;
-                        Navigator.pushReplacementNamed(context, AppRoutes.HOME);
+                        Store.saveMap('userData', {
+                          'auth': state.auth,
+                          'expiryDate': DateTime.now().add(Duration(seconds: int.parse(state.auth.expiresIn))).toIso8601String(),
+                        });
+                        Navigator.pushReplacementNamed(
+                          context,
+                          AppRoutes.LOGIN_OR_HOME,
+                        );
                       });
                     }
                     if (state is AuthErrorState) {
                       showDialog(
+                        barrierDismissible: false,
                         context: context,
                         builder: (ctx) {
                           return AlertDialog(
@@ -129,6 +139,7 @@ class _LoginPageState extends State<LoginPage> {
                     }
                   } catch (error) {
                     showDialog(
+                      barrierDismissible: false,
                       context: context,
                       builder: (ctx) {
                         return AlertDialog(

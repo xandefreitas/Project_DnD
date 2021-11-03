@@ -1,20 +1,57 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:project_dd/common/api/auth_webclient.dart';
+import 'package:project_dd/common/data/store.dart';
+import 'package:project_dd/model/auth.dart';
 import 'package:project_dd/util/app_routes.dart';
 
 import 'components/grid_item.dart';
 import 'components/home_app_bar_widget.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  final Auth auth;
+  const HomePage({Key key, this.auth}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  DateTime datetime;
+  int timeToSignOut;
+  Timer signOutTimer;
+  @override
+  void initState() {
+    datetime = DateTime.now().add(Duration(seconds: int.parse(widget.auth.expiresIn)));
+    timeToSignOut = datetime.difference(DateTime.now()).inSeconds;
+
+    signOutTimer = new Timer.periodic(Duration(seconds: 1), (Timer timer) {
+      if (timeToSignOut <= 0) {
+        setState(() {
+          timer.cancel();
+        });
+        autoLogout();
+      } else {
+        timeToSignOut--;
+        Store.saveMap(
+          'userData',
+          {
+            'auth': widget.auth,
+            'expiryDate': datetime.toIso8601String(),
+          },
+        );
+        print(timeToSignOut);
+      }
+    });
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
     return Scaffold(
       backgroundColor: Color(0xFFcccbcb),
-      key: _scaffoldKey,
-      appBar: HomeAppBarWidget(context, _scaffoldKey),
-      endDrawer: Drawer(),
+      appBar: HomeAppBarWidget(context, signOutTimer),
       body: SafeArea(
         child: Container(
           height: MediaQuery.of(context).size.height,
@@ -102,6 +139,7 @@ class HomePage extends StatelessWidget {
                             fit: BoxFit.fill,
                           ),
                           itemLabel: 'Characters',
+                          auth: widget.auth,
                         ),
                         GridItem(
                           navigatorPage: AppRoutes.ENCYCLOPEDIA,
@@ -110,6 +148,7 @@ class HomePage extends StatelessWidget {
                             fit: BoxFit.fill,
                           ),
                           itemLabel: 'Encyclopedia',
+                          auth: widget.auth,
                         ),
                         GridItem(
                           navigatorPage: AppRoutes.BLANK,
@@ -118,6 +157,7 @@ class HomePage extends StatelessWidget {
                             fit: BoxFit.fill,
                           ),
                           itemLabel: 'Spells',
+                          auth: widget.auth,
                         ),
                         GridItem(
                           navigatorPage: AppRoutes.BLANK,
@@ -126,6 +166,7 @@ class HomePage extends StatelessWidget {
                             fit: BoxFit.fill,
                           ),
                           itemLabel: 'Quests',
+                          auth: widget.auth,
                         ),
                       ],
                     ),
@@ -139,7 +180,26 @@ class HomePage extends StatelessWidget {
     );
   }
 
-  openDrawer(BuildContext context) {
-    Scaffold.of(context).openEndDrawer();
+  autoLogout() {
+    AuthWebClient().signOut();
+    Store.remove('userData');
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (ctx) {
+        return AlertDialog(
+          title: Text('Your session has expired!'),
+          content: Text('Please sign in again!'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, AppRoutes.LOGIN_OR_HOME);
+              },
+              child: Text('Ok'),
+            ),
+          ],
+        );
+      },
+    );
   }
 }

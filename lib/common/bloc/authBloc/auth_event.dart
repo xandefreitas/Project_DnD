@@ -24,3 +24,8 @@ class SignInFetchEvent extends AuthEvent {
   @override
   List<Object> get props => [];
 }
+
+class SignOutFetchEvent extends AuthEvent {
+  @override
+  List<Object> get props => [];
+}

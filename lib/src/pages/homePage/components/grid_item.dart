@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:project_dd/model/auth.dart';
 
 class GridItem extends StatelessWidget {
   final String itemLabel;
   final Image itemImage;
   final String navigatorPage;
+  final Auth auth;
   const GridItem({
     Key key,
     @required this.itemImage,
     @required this.itemLabel,
     @required this.navigatorPage,
+    @required this.auth,
   }) : super(key: key);
 
   @override
@@ -17,6 +20,7 @@ class GridItem extends StatelessWidget {
       onTap: () => Navigator.pushNamed(
         context,
         navigatorPage,
+        arguments: auth,
       ),
       child: Container(
         decoration: BoxDecoration(

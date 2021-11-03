@@ -2,12 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:line_icons/line_icon.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:project_dd/common/bloc/authBloc/auth_bloc.dart';
+import 'package:project_dd/common/bloc/authBloc/auth_event.dart';
 import 'package:project_dd/common/bloc/characters/characters_bloc.dart';
 import 'package:project_dd/common/bloc/characters/characters_event.dart';
 import 'package:project_dd/common/bloc/characters/characters_state.dart';
 import 'package:project_dd/core/app_colors.dart';
+import 'package:project_dd/model/auth.dart';
 import 'package:project_dd/model/character.dart';
 import 'package:project_dd/src/pages/characterDetailsPage/character_details_page.dart';
+import 'package:project_dd/util/app_routes.dart';
 
 import '../characterCreationPage/character_creation_page.dart';
 
@@ -18,15 +22,19 @@ class CharactersListContainer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context).settings.arguments as Auth;
     return BlocProvider(
       create: (_) => CharactersBloc(),
-      child: CharactersListPage(),
+      child: CharactersListPage(
+        auth: args,
+      ),
     );
   }
 }
 
 class CharactersListPage extends StatefulWidget {
-  const CharactersListPage({Key key}) : super(key: key);
+  final Auth auth;
+  const CharactersListPage({Key key, this.auth}) : super(key: key);
 
   @override
   State<CharactersListPage> createState() => _CharactersListPageState();
@@ -37,7 +45,7 @@ class _CharactersListPageState extends State<CharactersListPage> {
   List<Character> characters = <Character>[];
   @override
   void initState() {
-    context.read<CharactersBloc>().add(CharactersListFetchEvent());
+    context.read<CharactersBloc>().add(CharactersListFetchEvent(widget.auth));
     super.initState();
   }
 
@@ -69,6 +77,7 @@ class _CharactersListPageState extends State<CharactersListPage> {
           if (state is CharactersErrorState) {
             print(state.exception.toString());
             showDialog(
+              barrierDismissible: false,
               context: context,
               builder: (ctx) {
                 return AlertDialog(
@@ -109,6 +118,7 @@ class _CharactersListPageState extends State<CharactersListPage> {
                                         builder: (context) => CharacterDetailsContainer(
                                           pageReload: reload,
                                           character: character,
+                                          auth: widget.auth,
                                         ),
                                       ),
                                     ),
@@ -145,7 +155,9 @@ class _CharactersListPageState extends State<CharactersListPage> {
                                                         ),
                                                         TextButton(
                                                           onPressed: () {
-                                                            context.read<CharactersBloc>().add(CharacterDeleteEvent(character.id));
+                                                            context
+                                                                .read<CharactersBloc>()
+                                                                .add(CharacterDeleteEvent(characterID: character.id, token: widget.auth));
 
                                                             Navigator.pop(context);
                                                           },
@@ -164,6 +176,7 @@ class _CharactersListPageState extends State<CharactersListPage> {
                                   ),
                                 )
                                 .toList()
+                                .reversed
                           ],
                         ),
                         Positioned(
@@ -198,6 +211,7 @@ class _CharactersListPageState extends State<CharactersListPage> {
                                   MaterialPageRoute(
                                     builder: (context) => CharacterCreationContainer(
                                       pageReload: reload,
+                                      auth: widget.auth,
                                     ),
                                   ),
                                 ),
@@ -220,6 +234,6 @@ class _CharactersListPageState extends State<CharactersListPage> {
   }
 
   reload() {
-    context.read<CharactersBloc>().add(CharactersListFetchEvent());
+    context.read<CharactersBloc>().add(CharactersListFetchEvent(widget.auth));
   }
 }
