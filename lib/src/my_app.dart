@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project_dd/common/api/auth_webclient.dart';
 import 'package:project_dd/core/app_colors.dart';
+import 'package:project_dd/src/pages/characterCreationPage/character_creation_page.dart';
 import 'package:project_dd/src/pages/loginPage/login_page.dart';
 import 'package:project_dd/util/app_routes.dart';
 
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
               appBar: AppBar(),
             ),
         AppRoutes.CHARACTER_DETAILS: (ctx) => CharacterDetailsContainer(),
+        AppRoutes.CHARACTER_CREATION: (ctx) => CharacterCreationContainer(),
         AppRoutes.CLASSES: (ctx) => ClassesListPage(),
         AppRoutes.RACES: (ctx) => RacesListPage(),
         AppRoutes.CLASS_DETAIL: (ctx) => DetailsPage(),

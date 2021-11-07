@@ -168,6 +168,7 @@ class _LoginPageState extends State<LoginPage> {
                         TextFormField(
                             keyboardType: TextInputType.emailAddress,
                             readOnly: isLoading,
+                            textInputAction: TextInputAction.next,
                             cursorColor: AppColors.purplePrimary,
                             scrollPadding: EdgeInsets.symmetric(horizontal: 20),
                             decoration: InputDecoration(
@@ -202,8 +203,10 @@ class _LoginPageState extends State<LoginPage> {
                             }),
                         SizedBox(height: 4),
                         TextFormField(
+                            textInputAction: isSignIn ? TextInputAction.done : TextInputAction.next,
                             controller: _passwordController,
                             keyboardType: TextInputType.text,
+                            onFieldSubmitted: (password) => isSignIn ? _submit() : () {},
                             obscureText: true,
                             readOnly: isLoading,
                             cursorColor: AppColors.purplePrimary,
@@ -243,6 +246,8 @@ class _LoginPageState extends State<LoginPage> {
                             ? TextFormField(
                                 keyboardType: TextInputType.text,
                                 obscureText: true,
+                                textInputAction: TextInputAction.done,
+                                onFieldSubmitted: (password) => _submit(),
                                 readOnly: isLoading,
                                 cursorColor: AppColors.purplePrimary,
                                 scrollPadding: EdgeInsets.symmetric(horizontal: 20),

@@ -10,7 +10,9 @@ import 'package:project_dd/common/bloc/characters/characters_state.dart';
 import 'package:project_dd/core/app_colors.dart';
 import 'package:project_dd/model/auth.dart';
 import 'package:project_dd/model/character.dart';
+import 'package:project_dd/src/pages/characterCreationPage/components/character_creation_args.dart';
 import 'package:project_dd/src/pages/characterDetailsPage/character_details_page.dart';
+import 'package:project_dd/src/pages/characterDetailsPage/components/character_details_args.dart';
 import 'package:project_dd/util/app_routes.dart';
 
 import '../characterCreationPage/character_creation_page.dart';
@@ -52,7 +54,9 @@ class _CharactersListPageState extends State<CharactersListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        backgroundColor: AppColors.purplePrimary,
+      ),
       body: BlocConsumer<CharactersBloc, CharactersState>(
         listener: (context, state) {
           if (state is CharactersListFetchingState) {
@@ -72,7 +76,25 @@ class _CharactersListPageState extends State<CharactersListPage> {
             });
           }
           if (state is DeletedCharacterState) {
-            reload();
+            showDialog(
+              barrierDismissible: false,
+              context: context,
+              builder: (ctx) {
+                return AlertDialog(
+                  title: Text('Deleted!'),
+                  content: Text('Character deleted successfully'),
+                  actions: [
+                    TextButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                        reload();
+                      },
+                      child: Text('Ok'),
+                    ),
+                  ],
+                );
+              },
+            );
           }
           if (state is CharactersErrorState) {
             print(state.exception.toString());
@@ -105,6 +127,7 @@ class _CharactersListPageState extends State<CharactersListPage> {
               : RefreshIndicator(
                   onRefresh: () async => reload(),
                   child: Container(
+                    color: Colors.grey[200],
                     child: Stack(
                       children: [
                         ListView(
@@ -112,22 +135,27 @@ class _CharactersListPageState extends State<CharactersListPage> {
                             ...characters
                                 .map(
                                   (character) => InkWell(
-                                    onTap: () => Navigator.push(
+                                    onTap: () => Navigator.pushNamed(
                                       context,
-                                      MaterialPageRoute(
-                                        builder: (context) => CharacterDetailsContainer(
-                                          pageReload: reload,
-                                          character: character,
-                                          auth: widget.auth,
-                                        ),
-                                      ),
+                                      AppRoutes.CHARACTER_DETAILS,
+                                      arguments: CharacterDetailsArgs(widget.auth, character, reload),
                                     ),
                                     child: Card(
                                       child: Container(
+                                        padding: EdgeInsets.symmetric(horizontal: 8),
                                         height: 100,
                                         child: Row(
                                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                           children: [
+                                            CircleAvatar(
+                                              radius: 30,
+                                              backgroundColor: AppColors.purplePrimary,
+                                              child: Icon(
+                                                Icons.person,
+                                                size: 40,
+                                                color: Colors.white,
+                                              ),
+                                            ),
                                             Column(
                                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -138,7 +166,10 @@ class _CharactersListPageState extends State<CharactersListPage> {
                                               ],
                                             ),
                                             InkWell(
-                                              child: Icon(Icons.delete),
+                                              child: Icon(
+                                                Icons.delete,
+                                                color: Colors.red,
+                                              ),
                                               onTap: () {
                                                 showDialog(
                                                   context: context,
@@ -206,15 +237,8 @@ class _CharactersListPageState extends State<CharactersListPage> {
                                 tooltip: 'Add character',
                                 padding: EdgeInsets.zero,
                                 iconSize: 48,
-                                onPressed: () => Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => CharacterCreationContainer(
-                                      pageReload: reload,
-                                      auth: widget.auth,
-                                    ),
-                                  ),
-                                ),
+                                onPressed: () =>
+                                    Navigator.pushNamed(context, AppRoutes.CHARACTER_CREATION, arguments: CharacterCreationArgs(widget.auth, reload)),
                                 icon: LineIcon(
                                   LineIcons.diceD20,
                                   size: 48,

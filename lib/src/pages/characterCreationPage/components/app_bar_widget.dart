@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:project_dd/core/app_colors.dart';
+import 'package:project_dd/model/character.dart';
 
 class AppBarWidget extends PreferredSize {
-  AppBarWidget(BuildContext context)
+  AppBarWidget(BuildContext context, Character character)
       : super(
           preferredSize: Size.fromHeight(250),
           child: Container(
@@ -9,14 +11,7 @@ class AppBarWidget extends PreferredSize {
             child: Stack(
               children: [
                 Container(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.blue,
-                        Colors.blue[800],
-                      ],
-                    ),
-                  ),
+                  decoration: BoxDecoration(color: AppColors.purplePrimary),
                   padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                   height: 150,
                   width: double.maxFinite,
@@ -38,6 +33,21 @@ class AppBarWidget extends PreferredSize {
                             labelText: 'name',
                             labelStyle: TextStyle(color: Colors.white),
                           ),
+                          onSaved: (name) => character.name = name,
+                          validator: (_name) {
+                            final name = _name ?? '';
+
+                            if (name.trim().isEmpty) {
+                              return 'Required';
+                            }
+                            if (name.trim().length < 5) {
+                              return '5 characters minimum';
+                            }
+                            if (name.trim().length > 15) {
+                              return '15 characters maximum';
+                            }
+                            return null;
+                          },
                         ),
                       ),
                       Flexible(

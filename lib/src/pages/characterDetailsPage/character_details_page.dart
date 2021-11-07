@@ -6,30 +6,27 @@ import 'package:project_dd/common/bloc/characters/characters_state.dart';
 import 'package:project_dd/model/auth.dart';
 import 'package:project_dd/model/character.dart';
 
+import 'components/character_details_args.dart';
+
 enum ViewMode {
   View,
   Edit,
 }
 
 class CharacterDetailsContainer extends StatelessWidget {
-  final Function pageReload;
-  final Character character;
-  final Auth auth;
   const CharacterDetailsContainer({
     Key key,
-    this.pageReload,
-    this.character,
-    this.auth,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final args = ModalRoute.of(context).settings.arguments as CharacterDetailsArgs;
     return BlocProvider(
       create: (_) => CharactersBloc(),
       child: CharacterDetailsPage(
-        reloadList: pageReload,
-        character: character,
-        auth: auth,
+        reloadList: args.function,
+        character: args.character,
+        auth: args.auth,
       ),
     );
   }
@@ -65,7 +62,23 @@ class _CharacterCreationPageState extends State<CharacterDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.character.id),
+        title: Text(widget.character.name),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(20),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Text(
+                'Exp: ${widget.character.experience}',
+                style: TextStyle(color: Colors.white),
+              ),
+              Text(
+                'Level: ${widget.character.level}',
+                style: TextStyle(color: Colors.white),
+              ),
+            ],
+          ),
+        ),
         centerTitle: true,
       ),
       body: BlocConsumer<CharactersBloc, CharactersState>(
@@ -114,6 +127,11 @@ class _CharacterCreationPageState extends State<CharacterDetailsPage> {
                   child: Center(
                     child: FloatingActionButton(
                       onPressed: () {
+                        _updatedCharacter.experience += 30;
+                        if (_updatedCharacter.experience >= 100) {
+                          _updatedCharacter.experience -= 100;
+                          _updatedCharacter.level++;
+                        }
                         context.read<CharactersBloc>().add(CharacterUpdateEvent(character: _updatedCharacter, token: widget.auth));
                       },
                     ),

@@ -34,8 +34,6 @@ class _HomePageState extends State<HomePage> {
         autoLogout();
       } else {
         timeToSignOut--;
-
-        print(timeToSignOut);
       }
     });
 
